@@ -5,6 +5,12 @@ block content
   p Welcome to #{title}
 
   form(action='/upload', method='post', enctype='multipart/form-data')
-    | Select image to upload:
+    | add a file
     input(id='fileToUpload', type='file', name='fileToUpload')
-    input(type='submit', value='Upload Image', name='submit', id='upload-button')
+    input(type='submit', value='upload files', name='submit', id='upload-button')
+
+    ul.file-list.collection
+      li.collection-item
+        .progress
+          .determinate(style='width: 0%')
+
