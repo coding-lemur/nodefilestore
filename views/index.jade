@@ -10,7 +10,9 @@ block content
         input(id='fileToUpload', type='file', name='fileToUpload')
         input(type='submit', value='upload files', name='submit', id='upload-button')
 
-    .progress
+    ul.file-list.collection.hide
+
+    .progress.hide
         .determinate(style='width: 0%')
 
     .fixed-action-btn

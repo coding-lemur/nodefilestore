@@ -3,33 +3,33 @@
     var files = [];
 
     window.onload = function() {
-        //var fileList = document.querySelector('ul.file-list');
-
+        var fileList = document.querySelector('ul.file-list');
+        var progress = document.querySelector('.progress');
         var filesToUpload = document.getElementById('fileToUpload');
-        filesToUpload.addEventListener('change', function(e) {
-            var file = filesToUpload.files[0];
+        var addFileButton = document.querySelector('#add-file-button');
 
-            /*
+        filesToUpload.addEventListener('change', function(e) {
+            // disable add-file button
+            addFileButton.classList.add('disabled');
+
+            var file = filesToUpload.files[0];
+            files.push(file);
+
             var fileItem = document.createElement('li');
             fileItem.className = 'collection-item';
             var label = document.createTextNode(file.name + ' (' + file.size + ' bytes)');
             fileItem.appendChild(label);
             fileList.appendChild(fileItem);
-            */
 
-            files.push(file);
+            // show file-list
+            fileList.classList.remove('hide');
 
-            /*
-             for (var i = 0; i < filesToUpload.files.length; i++) {
-             var file = filesToUpload.files[i];
+            // show progress
+            progress.classList.remove('hide');
 
-             console.log(file.name, file.size + ' bytes', file.type);
-             files.push(file);
-             }
-             */
+            uploadFiles();
         }, false);
 
-        var addFileButton = document.getElementById('add-file-button');
         addFileButton.addEventListener('click', function(e) {
             e.preventDefault();
 
@@ -37,10 +37,7 @@
             filesToUpload.click();
         }, false);
 
-        var uploadButton = document.getElementById('upload-button');
-        uploadButton.addEventListener('click', function(e) {
-            e.preventDefault();
-
+        function uploadFiles() {
             for (var i = 0; i < files.length; i++) {
                 var file = files[i];
 
@@ -63,24 +60,24 @@
                 };
 
                 /*
-                var formData = new FormData();
-                formData.append('myFile', file);
+                 var formData = new FormData();
+                 formData.append('myFile', file);
 
-                var xhr = new XMLHttpRequest();
-                xhr.upload.addEventListener('progress', function(e) {
-                    if (e.lengthComputable) {
-                        var percentage = Math.round((e.loaded * 100) / e.total);
-                        console.log(percentage);
-                    }
-                }, false);
-                xhr.upload.addEventListener('load', function(e){
-                    //self.ctrl.update(100);
-                    console.log('upload finished');
-                }, false);
-                xhr.open('POST', '/upload');
-                xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
-                xhr.send(formData);
-                */
+                 var xhr = new XMLHttpRequest();
+                 xhr.upload.addEventListener('progress', function(e) {
+                 if (e.lengthComputable) {
+                 var percentage = Math.round((e.loaded * 100) / e.total);
+                 console.log(percentage);
+                 }
+                 }, false);
+                 xhr.upload.addEventListener('load', function(e){
+                 //self.ctrl.update(100);
+                 console.log('upload finished');
+                 }, false);
+                 xhr.open('POST', '/upload');
+                 xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
+                 xhr.send(formData);
+                 */
 
                 reader.addEventListener('load', function(e) {
                     console.log('read chunk nr', currentChunk + 1, 'of', chunks);
@@ -96,6 +93,9 @@
                     } else {
                         console.log('finished loading');
                         console.info('computed hash', spark.end());  // compute hash
+
+                        // enable add-file button
+                        addFileButton.classList.remove('disabled');
                     }
                 }, false);
                 reader.addEventListener('error', function() {
@@ -105,6 +105,6 @@
                 progress.style.width = '0%';
                 loadNext();
             }
-        }, false);
-    }
+        }
+    };
 })();
