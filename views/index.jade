@@ -3,19 +3,23 @@ extends layout
 block header
     script(type='text/javascript', src='/libs/angularjs/angular.min.js')
     script(type='text/javascript', src='/libs/SparkMD5/spark-md5.min.js')
+    script(type='text/javascript', src='/javascripts/angular/app.js')
     script(type='text/javascript', src='/javascripts/script.js')
 
 block content
-    form(action='/upload', method='post', enctype='multipart/form-data')
-        | add a file
-        input(id='fileToUpload', type='file', name='fileToUpload')
-        input(type='submit', value='upload files', name='submit', id='upload-button')
+    .main-controller(ng-controller='MainController as mainController')
+        form(action='/upload', method='post', enctype='multipart/form-data')
+            | add a file
+            input(id='fileToUpload', type='file', name='fileToUpload')
+            input(type='submit', value='upload files', name='submit', id='upload-button')
 
-        ul.file-list.collection
-            li.collection-item
-                .progress
-                    .determinate(style='width: 0%')
+            ul.file-list.collection
+                li.collection-item(ng-repeat='file in mainController.files')
+                    span.name {{ file.name }}
+                    span.size ({{ file.size }})
+                    .progress(ng-show='file.showProgress')
+                        .determinate(style='width: 0%')
 
-    .fixed-action-btn
-        a.btn-floating.btn-large.red
-            i.large.material-icons add
+        .fixed-action-btn
+            a.btn-floating.btn-large.red(ng-click='mainController.addFile()')
+                i.large.material-icons add
