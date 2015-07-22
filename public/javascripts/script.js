@@ -3,32 +3,41 @@
     var files = [];
 
     window.onload = function() {
-        var fileList = document.querySelector('ul.file-list');
+        //var fileList = document.querySelector('ul.file-list');
 
         var filesToUpload = document.getElementById('fileToUpload');
         filesToUpload.addEventListener('change', function(e) {
             var file = filesToUpload.files[0];
 
+            /*
             var fileItem = document.createElement('li');
             fileItem.className = 'collection-item';
             var label = document.createTextNode(file.name + ' (' + file.size + ' bytes)');
             fileItem.appendChild(label);
             fileList.appendChild(fileItem);
+            */
 
             files.push(file);
 
             /*
-            for (var i = 0; i < filesToUpload.files.length; i++) {
-                var file = filesToUpload.files[i];
+             for (var i = 0; i < filesToUpload.files.length; i++) {
+             var file = filesToUpload.files[i];
 
-                console.log(file.name, file.size + ' bytes', file.type);
-                files.push(file);
-            }
-            */
+             console.log(file.name, file.size + ' bytes', file.type);
+             files.push(file);
+             }
+             */
+        }, false);
+
+        var addFileButton = document.getElementById('add-file-button');
+        addFileButton.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // show file selection dialog
+            filesToUpload.click();
         }, false);
 
         var uploadButton = document.getElementById('upload-button');
-
         uploadButton.addEventListener('click', function(e) {
             e.preventDefault();
 
