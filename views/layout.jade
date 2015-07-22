@@ -1,30 +1,32 @@
 doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/libs/materialize/css/materialize.min.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-  body
-    script(type='text/javascript', src='https://code.jquery.com/jquery-2.1.1.min.js')
-    script(type='text/javascript', src='/libs/materialize/js/materialize.min.js')
-    script(type='text/javascript', src='/libs/SparkMD5/spark-md5.min.js')
-    script(type='text/javascript', src='/javascripts/script.js')
-
-    nav
-      .nav-wrapper.container
-        a.brand-logo(id='logo-container', href='/') node filestore
-        ul.right.hide-on-med-and-down
-          li
-            a(href='sass.html') Sass
-          li
-            a(href='badges.html') Components
-          li
-            a(href='collapsible.html') JavaScript
-        ul.side-nav(id='nav-mobile')
-          li
-            a(href='#') Link
-        a.button-collapse(href='#', data-activates='nav-mobile')
-          i.material-icons menu
-    .container
-      block content
+html(ng-app=angularApp)
+    head
+        title= title
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        link(rel='stylesheet', href='/libs/materialize/css/materialize.min.css')
+        link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(type='text/javascript', src='/libs/jquery/jquery-2.1.4.min.js')
+        script(type='text/javascript', src='/libs/materialize/js/materialize.min.js')
+        block header
+    body
+        nav
+            .nav-wrapper.container
+                a.brand-logo(id='logo-container', href='/') node filestore
+                ul.right.hide-on-med-and-down
+                    li
+                        a(href='sass.html') Sass
+                    li
+                        a(href='badges.html') Components
+                    li
+                        a(href='collapsible.html') JavaScript
+                ul.side-nav(id='nav-mobile')
+                    li
+                        a(href='#') Link
+                a.button-collapse(href='#', data-activates='nav-mobile')
+                    i.material-icons menu
+        .container
+            block content
+        block footer
