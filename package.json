@@ -1,9 +1,16 @@
 {
   "name": "nodefilestore",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MCeddy/nodefilestore.git"
+  },
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "build": "webpack --config webpack.build.js --bail -p",
+    "dev": "node node_modules/.bin/webpack-dev-server --history-api-fallback --hot --inline --progress",
+    "test": "karma start",
+    "test:live": "karma start --auto-watch --no-single-run"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -14,6 +21,20 @@
     "less-middleware": "1.0.x",
     "morgan": "~1.6.1",
     "multer": "^0.1.8",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "autoprefixer-core": "^5.2.0",
+    "babel-core": "^5.5.8",
+    "babel-loader": "^5.1.4",
+    "babel-runtime": "^5.5.8",
+    "css-loader": "^0.15.5",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "file-loader": "^0.8.4",
+    "html-webpack-plugin": "^1.5.2",
+    "node-libs-browser": "^0.5.2",
+    "postcss-loader": "^0.5.1",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.12.3",
+    "webpack": "^1.9.11",
+    "webpack-dev-server": "^1.9.0"
   }
 }
