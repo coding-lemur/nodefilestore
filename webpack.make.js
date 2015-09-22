@@ -55,11 +55,11 @@ module.exports = function makeWebpackConfig (options) {
 
             // Filename for entry points
             // Only adds hash in build mode
-            filename: BUILD ? '[name].[hash].js' : '[name].bundle.js',
+            filename: BUILD ? '[name].js' : '[name].bundle.js',
 
             // Filename for non-entry points
             // Only adds hash in build mode
-            chunkFilename: BUILD ? '[name].[hash].js' : '[name].bundle.js'
+            chunkFilename: BUILD ? '[name].js' : '[name].bundle.js'
         }
     }
 
@@ -153,6 +153,13 @@ module.exports = function makeWebpackConfig (options) {
     // Add cssLoader to the loader list
     config.module.loaders.push(cssLoader);
 
+    var sassLoader = {
+        test: /\.scss$/,
+        // Passing indentedSyntax query param to node-sass
+        loader: 'style!css!sass'
+    };
+    config.module.loaders.push(sassLoader);
+
     /**
      * PostCSS
      * Reference: https://github.com/postcss/autoprefixer-core
@@ -173,7 +180,7 @@ module.exports = function makeWebpackConfig (options) {
         // Reference: https://github.com/webpack/extract-text-webpack-plugin
         // Extract css files
         // Disabled when in test mode or not in build mode
-        new ExtractTextPlugin('[name].[hash].css', {
+        new ExtractTextPlugin('[name].css', {
             disable: !BUILD || TEST
         })
     ];
