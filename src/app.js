@@ -1,8 +1,8 @@
 import './styles/style.scss';
 
 import angular from './../public/libs/angularjs/angular';
-import MainController from './Main.controller';
-import FilePickerDirective from './FilePicker/FilePicker.directive';
+import MainController from './main.controller';
+import FilePickerDirective from './FilePicker/filePicker.directive';
 
 angular
     .module('UploadApp', [])

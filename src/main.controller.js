@@ -1,5 +1,5 @@
 import FileViewModel from './viewmodels/file.viewmodel';
-import { FilePickerEventKeys } from './FilePicker/FilePicker.directive';
+import { FilePickerEventKeys } from './FilePicker/filePicker.directive';
 
 export default class MainController {
     constructor($scope) {
