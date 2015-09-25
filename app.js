@@ -22,11 +22,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+
+/*
 app.use(multer({
   onFileUploadStart: onFileUploadStart,
   onFileUploadData: onFileUploadData,
   onFileUploadComplete: onFileUploadComplete
 }));
+*/
 
 app.use('/', routes);
 
@@ -61,6 +64,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
+/*
 function onFileUploadStart(file, req, res) {
   console.log('onFileUploadStart', file);
 }
@@ -72,5 +76,6 @@ function onFileUploadData(file, data, req, res) {
 function onFileUploadComplete(file, req, res) {
   console.log('onFileUploadComplete', file);
 }
+*/
 
 module.exports = app;
