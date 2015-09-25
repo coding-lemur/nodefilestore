@@ -12,6 +12,14 @@ html(ng-app=angularApp)
         block header
     body
         include navigation
-        .container
-            block content
+        .section.no-pad-bot
+            .container
+                block content
+        footer.page-footer.orange
+            .container
+                | Hörnchen & Fische
+            .footer-copyright
+                .container
+                    made by&nbsp;
+                    a.orange-text.text-lighten-3(href='http://www.coding-lemur.de', target='_blank') coding lemur
         block footer

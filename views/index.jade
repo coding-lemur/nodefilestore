@@ -5,7 +5,9 @@ block header
 
 block content
     .main-controller(ng-controller='MainController as mainController')
-        ul.file-list.collection
+        .empty-list(ng-show='mainController.files.length === 0')
+            | es wurden noch keine Dateien hinzugefügt
+        ul.file-list.collection(ng-show='mainController.files.length > 0')
             li.collection-item(ng-repeat='file in mainController.files')
                 span.name {{ file.name }}
                 span.size ({{ file.size }})
