@@ -2,11 +2,11 @@
 
 // Modules
 var webpack = require('webpack');
-var autoprefixer = require('autoprefixer-core');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+//var autoprefixer = require('autoprefixer-core');
+//var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = function makeWebpackConfig (options) {
+module.exports = function makeWebpackConfig(options) {
     /**
      * Environment type
      * BUILD is for generating minified builds
@@ -151,7 +151,7 @@ module.exports = function makeWebpackConfig (options) {
     }
 
     // Add cssLoader to the loader list
-    config.module.loaders.push(cssLoader);
+    //config.module.loaders.push(cssLoader);
 
     var sassLoader = {
         test: /\.scss$/,
@@ -165,11 +165,13 @@ module.exports = function makeWebpackConfig (options) {
      * Reference: https://github.com/postcss/autoprefixer-core
      * Add vendor prefixes to your css
      */
+    /*
     config.postcss = [
         autoprefixer({
             browsers: ['last 2 version']
         })
     ];
+    */
 
     /**
      * Plugins
