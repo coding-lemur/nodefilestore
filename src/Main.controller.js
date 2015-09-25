@@ -1,11 +1,10 @@
-import FileViewModel from './viewmodels/File.viewmodel';
+import FileViewModel from './viewmodels/file.viewmodel';
 import { FilePickerEventKeys } from './FilePicker/FilePicker.directive';
 
 export default class MainController {
     constructor($scope) {
         this.$scope = $scope;
         this.files = [];
-
 
         this.$scope.$on(FilePickerEventKeys.FilesSelected, (event, args) => {
             event.stopPropagation();
