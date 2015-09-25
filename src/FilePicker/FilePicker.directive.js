@@ -19,7 +19,6 @@ function linkFunction($scope, $element, attributes) {
     fileInput.addEventListener('change', () => {
         $scope.$apply(() => {
             $scope.$emit(FilePickerEventKeys.FilesSelected, { files: fileInput.files });
-            alert('dd');
         })
     });
 

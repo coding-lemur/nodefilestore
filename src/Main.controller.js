@@ -1,15 +1,23 @@
-//import FileViewModel from './viewmodels/File.viewmodel';
-import FilePickerEventKeys from './FilePicker/FilePicker.directive';
+import FileViewModel from './viewmodels/File.viewmodel';
+import { FilePickerEventKeys } from './FilePicker/FilePicker.directive';
 
 export default class MainController {
     constructor($scope) {
         this.$scope = $scope;
-        //this.files = [new FileViewModel(), new FileViewModel(), new FileViewModel()];
+        this.files = [];
+
 
         this.$scope.$on(FilePickerEventKeys.FilesSelected, (event, args) => {
             event.stopPropagation();
 
-            alert('exy');
+            if (!args || !args.files) {
+                return;
+            }
+
+            for (var i = 0; i < args.files.length; i++) {
+                var file = args.files[i];
+                this.files.push(new FileViewModel(file));
+            }
         });
     }
 
