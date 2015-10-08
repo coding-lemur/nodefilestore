@@ -11,8 +11,8 @@ block content
             li.collection-item(ng-repeat='file in mainController.files')
                 span.name {{ file.name }}
                 span.size ({{ file.size }})
-                .progress(ng-show='file.showProgress')
-                    .determinate(style='width: 0%')
+                .progress
+                    .determinate(ng-style='{ "width": file.uploadedPercentage + "%" }')
 
         .fixed-action-btn
             a.btn-floating.btn-large.red(file-picker)

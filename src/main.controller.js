@@ -17,11 +17,15 @@ export default class MainController {
                 var file = args.files[i];
                 this.files.push(new FileViewModel(file));
             }
+
+            this.uploadFiles();
         });
     }
 
-    addFile() {
-        alert('add me!');
+    uploadFiles() {
+        for (var file of this.files) {
+            file.upload(this.$scope);
+        }
     }
 }
 
