@@ -2,12 +2,13 @@ import FileViewModel from './viewmodels/file.viewmodel';
 import { FilePickerEventKeys } from './FilePicker/filePicker.directive';
 
 export default class MainController {
-    constructor($scope) {
+    constructor($scope, dataService) {
         this.$scope = $scope;
+        this.dataService = dataService;
         this.files = [];
 
-        this.$scope.$on(FilePickerEventKeys.FilesSelected, (event, args) => {
-            event.stopPropagation();
+        this.$scope.$on(FilePickerEventKeys.FilesSelected, (e, args) => {
+            e.stopPropagation();
 
             if (!args || !args.files) {
                 return;
@@ -18,15 +19,23 @@ export default class MainController {
                 this.files.push(new FileViewModel(file));
             }
 
-            this.uploadFiles();
+            this.startUpload();
         });
     }
 
-    uploadFiles() {
-        for (var file of this.files) {
-            file.upload(this.$scope);
+    startUpload() {
+        for (let file of this.files) {
+            this.dataService.uploadFile(file)
+                .then(() => { // successful
+                    console.log('upload finished');
+                }, e => { // error
+                    console.error(e);
+                }, percentage => { // notify
+                    console.log(percentage);
+                    file.uploadedPercentage = percentage;
+                });
         }
     }
 }
 
-MainController.$inject = ['$scope'];
+MainController.$inject = ['$scope', 'dataService'];
