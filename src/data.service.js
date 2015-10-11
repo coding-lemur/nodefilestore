@@ -14,8 +14,15 @@ export default class DataService {
             }
         });
 
-        xhr.upload.addEventListener('load', e => {
-            deferred.resolve();
+        xhr.upload.addEventListener('load', e => { // upload finished
+            // do nothing
+        });
+
+        xhr.addEventListener('readystatechange', () => {
+            if (xhr.readyState === 4) { // download response finished
+                var data = xhr.responseText;
+                deferred.resolve(JSON.parse(data));
+            }
         });
 
         xhr.upload.addEventListener('error', e => {
@@ -27,7 +34,7 @@ export default class DataService {
         });
 
         var formData = new FormData();
-        formData.append('myFile', file.originalFile);
+        formData.append('files', file.originalFile);
 
         xhr.open('POST', '/upload', true);
         xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
