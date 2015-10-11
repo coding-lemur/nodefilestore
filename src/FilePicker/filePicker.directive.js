@@ -14,7 +14,7 @@ export default function FilePickerDirective() {
 function linkFunction($scope, $element, attributes) {
     var fileInput = document.createElement('input');
     fileInput.setAttribute('type', 'file');
-    fileInput.setAttribute('multiple', 'true');
+    //fileInput.setAttribute('multiple', 'true');
 
     fileInput.addEventListener('change', () => {
         $scope.$apply(() => {
