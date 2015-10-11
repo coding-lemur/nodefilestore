@@ -24,23 +24,21 @@ export default class MainController {
     }
 
     processQueue(index) {
-        console.log('startUpload()', index);
-
         if (index >= this.files.length) {
             return;
         }
 
         var file = this.files[index];
 
-        index++;
+        console.log('startUpload()', index);
 
         this.dataService.uploadFile(file)
-            .then(() => { // successful
-                console.log('upload finished');
-                this.processQueue(index);
+            .then(data => { // successful
+                console.log('upload finished', data);
+                this.processQueue(++index);
             }, e => { // error
                 console.error(e);
-                this.processQueue(index);
+                this.processQueue(++index);
             }, percentage => { // notify
                 console.log(percentage);
                 file.uploadedPercentage = percentage;
