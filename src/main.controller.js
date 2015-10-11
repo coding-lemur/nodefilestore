@@ -19,22 +19,32 @@ export default class MainController {
                 this.files.push(new FileViewModel(file));
             }
 
-            this.startUpload();
+            this.processQueue(0);
         });
     }
 
-    startUpload() {
-        for (let file of this.files) {
-            this.dataService.uploadFile(file)
-                .then(() => { // successful
-                    console.log('upload finished');
-                }, e => { // error
-                    console.error(e);
-                }, percentage => { // notify
-                    console.log(percentage);
-                    file.uploadedPercentage = percentage;
-                });
+    processQueue(index) {
+        console.log('startUpload()', index);
+
+        if (index >= this.files.length) {
+            return;
         }
+
+        var file = this.files[index];
+
+        index++;
+
+        this.dataService.uploadFile(file)
+            .then(() => { // successful
+                console.log('upload finished');
+                this.processQueue(index);
+            }, e => { // error
+                console.error(e);
+                this.processQueue(index);
+            }, percentage => { // notify
+                console.log(percentage);
+                file.uploadedPercentage = percentage;
+            });
     }
 }
 
