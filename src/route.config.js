@@ -14,7 +14,7 @@ export default function RouteConfig($routeProvider) {
             controllerAs: 'vm'
         })
         .otherwise({
-            redirectsTo: '/upload'
+            redirectTo: '/upload'
         });
 }
 
