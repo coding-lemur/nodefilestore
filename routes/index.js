@@ -37,9 +37,19 @@ router.post('/upload', upload.array('files'), function(req, res, next) {
     });
 });
 
+// enables HTML5Mode by forwarding missing files to the index.html
+router.get('/*', function(req, res, next) {
+    res.render('index', {
+        title: 'upload',
+        angularApp: 'UploadApp'
+    });
+});
+
+/*
 router.get('/files/:id', function (req, res) {
     res.status(200);
 });
+*/
 
 function insertUpload(db, fileIds, callback) {
     var collection = db.collection('uploads');

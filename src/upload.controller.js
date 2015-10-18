@@ -2,9 +2,11 @@ import FileViewModel from './viewmodels/file.viewmodel';
 import { FilePickerEventKeys } from './FilePicker/filePicker.directive';
 
 export default class UploadController {
-    constructor($scope, dataService) {
+    constructor($scope, $location, dataService) {
         this.$scope = $scope;
+        this.$location = $location;
         this.dataService = dataService;
+
         this.files = [];
         this.isUploading = false;
 
@@ -40,6 +42,9 @@ export default class UploadController {
             .then(data => { // successful
                 console.log('upload finished', data);
                 file.wasUploaded = true;
+
+                this.$location.path('/info/' + data.token);
+
                 this.processQueue(++index);
             }, e => { // error
                 console.error(e);
@@ -50,4 +55,4 @@ export default class UploadController {
     }
 }
 
-UploadController.$inject = ['$scope', 'dataService'];
+UploadController.$inject = ['$scope', '$location', 'dataService'];
