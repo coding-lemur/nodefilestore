@@ -4,15 +4,4 @@ block header
     script(type='text/javascript', src='/app.js')
 
 block content
-    .main-controller(ng-controller='MainController as mainController')
-        .empty-list(ng-show='mainController.files.length === 0')
-            | Add one or more files please.
-        ul.file-list.collection(ng-show='mainController.files.length > 0')
-            li.collection-item(ng-repeat='file in mainController.files')
-                span.name {{ file.name }}&nbsp;
-                span.size ({{ file.size | filesize }})
-                .progress
-                    .determinate(ng-style='{ "width": file.uploadedPercentage + "%" }')
-        .fixed-action-btn
-            a.btn-floating.btn-large.red(file-picker)
-                i.large.material-icons add
+    div(ng-view)

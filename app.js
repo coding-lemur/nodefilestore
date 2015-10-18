@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var jadeStatic = require('connect-jade-static');
 
 var routes = require('./routes/index');
 
@@ -20,6 +21,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(jadeStatic({
+  baseDir: path.join(__dirname, '/views/partials'),
+  baseUrl: '/partials',
+  maxAge: 86400,
+  jade: { pretty: true }
+}));
 
 app.use('/', routes);
 

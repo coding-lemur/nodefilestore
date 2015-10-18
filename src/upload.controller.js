@@ -1,7 +1,7 @@
 import FileViewModel from './viewmodels/file.viewmodel';
 import { FilePickerEventKeys } from './FilePicker/filePicker.directive';
 
-export default class MainController {
+export default class UploadController {
     constructor($scope, dataService) {
         this.$scope = $scope;
         this.dataService = dataService;
@@ -50,4 +50,4 @@ export default class MainController {
     }
 }
 
-MainController.$inject = ['$scope', 'dataService'];
+UploadController.$inject = ['$scope', 'dataService'];
