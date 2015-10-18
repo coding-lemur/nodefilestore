@@ -6,14 +6,13 @@ block header
 block content
     .main-controller(ng-controller='MainController as mainController')
         .empty-list(ng-show='mainController.files.length === 0')
-            | es wurden noch keine Dateien hinzugefügt
+            | Add one or more files please.
         ul.file-list.collection(ng-show='mainController.files.length > 0')
             li.collection-item(ng-repeat='file in mainController.files')
-                span.name {{ file.name }}
-                span.size ({{ file.size }})
+                span.name {{ file.name }}&nbsp;
+                span.size ({{ file.size | filesize }})
                 .progress
                     .determinate(ng-style='{ "width": file.uploadedPercentage + "%" }')
-
         .fixed-action-btn
             a.btn-floating.btn-large.red(file-picker)
                 i.large.material-icons add

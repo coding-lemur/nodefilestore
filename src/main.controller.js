@@ -6,6 +6,7 @@ export default class MainController {
         this.$scope = $scope;
         this.dataService = dataService;
         this.files = [];
+        this.isUploading = false;
 
         this.$scope.$on(FilePickerEventKeys.FilesSelected, (e, args) => {
             e.stopPropagation();
@@ -14,6 +15,9 @@ export default class MainController {
                 return;
             }
 
+            this.isUploading = true;
+
+            // add files to queue
             for (var i = 0; i < args.files.length; i++) {
                 var file = args.files[i];
                 this.files.push(new FileViewModel(file));
@@ -35,12 +39,12 @@ export default class MainController {
         this.dataService.uploadFile(file)
             .then(data => { // successful
                 console.log('upload finished', data);
+                file.wasUploaded = true;
                 this.processQueue(++index);
             }, e => { // error
                 console.error(e);
                 this.processQueue(++index);
             }, percentage => { // notify
-                console.log(percentage);
                 file.uploadedPercentage = percentage;
             });
     }
