@@ -36,7 +36,7 @@ export default class DataService {
         var formData = new FormData();
         formData.append('files', file.originalFile);
 
-        xhr.open('POST', '/upload', true);
+        xhr.open('POST', '/api/upload', true);
         xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
         xhr.send(formData);
 
