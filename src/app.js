@@ -4,7 +4,7 @@ import './../public/libs/angularjs/angular.min.js';
 import './../public/libs/angular-route/angular-route.min';
 
 import RouteConfig from './route.config';
-import FilePickerDirective from './FilePicker/filePicker.directive';
+import FilePickerDirective from './filepicker/filePicker.directive';
 import DataService from './data.service';
 import FilesizeFilter from './filesize.filter';
 
