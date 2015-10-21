@@ -29,6 +29,7 @@
     "gridfs-storage-engine": "https://github.com/MCeddy/gridfs-storage-engine.git#dev",
     "html-webpack-plugin": "^1.6.1",
     "jade": "~1.11.0",
+    "moment": "^2.10.6",
     "mongodb": "^2.0.46",
     "morgan": "~1.6.1",
     "multer": "^1.0.5",

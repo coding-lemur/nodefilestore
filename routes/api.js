@@ -7,6 +7,7 @@ var upload = multer({ storage: gridfsStorage });
 var MongoClient = require('mongodb').MongoClient;
 var httpError = require('../helper/httpError');
 var uuid = require('node-uuid');
+var moment = require('moment');
 
 router.post('/upload', upload.array('files'), function(req, res, next) {
     //var id = req.files[0].gridfsEntry._id.toJSON();
@@ -24,7 +25,10 @@ router.post('/upload', upload.array('files'), function(req, res, next) {
 
             db.close();
 
-            res.status(201).json({ token: upload.token });
+            res.status(201).json({
+                token: upload.token,
+                expirationDate: upload.expirationDate
+            });
         });
     });
 });
@@ -35,10 +39,12 @@ router.get('/files/:id', function(req, res) {
 
 function insertUpload(db, fileIds, callback) {
     var collection = db.collection('uploads');
+    var currentDate = new Date();
     var upload = {
         token: uuid.v4(),
         files: fileIds,
-        createDate: new Date()
+        createDate: currentDate,
+        expirationDate: moment(currentDate).add(7, 'days').toDate()
     };
 
     collection.insertMany([ upload ], function(err, result) {
