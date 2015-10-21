@@ -29,8 +29,8 @@ app.use(jadeStatic({
     jade: { pretty: true }
 }));
 
-app.use('/', indexRoutes);
 app.use('/api', apiRoutes);
+app.use('/', indexRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

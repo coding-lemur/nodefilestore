@@ -1,5 +1,5 @@
-import FileViewModel from './viewmodels/file.viewmodel';
-import { FilePickerEventKeys } from './FilePicker/filePicker.directive';
+import FileViewModel from './../viewmodels/file.viewmodel';
+import { FilePickerEventKeys } from './../filepicker/filePicker.directive';
 
 export default class UploadController {
     constructor($scope, $location, dataService) {

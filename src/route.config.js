@@ -1,5 +1,6 @@
-import UploadController from './upload.controller';
-import InfoController from './info.controller';
+import UploadController from './controller/upload.controller';
+import InfoController from './controller/info.controller';
+import DownloadController from './controller/download.controller';
 
 export default function RouteConfig($routeProvider, $locationProvider) {
     $routeProvider
@@ -11,6 +12,11 @@ export default function RouteConfig($routeProvider, $locationProvider) {
         .when('/info/:uploadToken', {
             templateUrl: '/partials/info.html',
             controller: InfoController,
+            controllerAs: 'vm'
+        })
+        .when('/download/:uploadToken', {
+            templateUrl: '/partials/download.html',
+            controller: DownloadController,
             controllerAs: 'vm'
         })
         .otherwise({
