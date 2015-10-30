@@ -44,8 +44,7 @@ export default class UploadController {
                 file.wasUploaded = true;
 
                 this.$location.path('/info/' + data.token);
-
-                this.processQueue(++index);
+                //this.processQueue(++index);
             }, e => { // error
                 console.error(e);
                 this.processQueue(++index);
