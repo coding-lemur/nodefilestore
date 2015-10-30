@@ -32,3 +32,4 @@ nodefilestore.iml
 /public/app.js.map
 /public/stylesheets/style.css
 /.vscode
+/public/libs
