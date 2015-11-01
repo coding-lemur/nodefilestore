@@ -1,6 +1,5 @@
 import UploadController from './controller/upload.controller';
 import InfoController from './controller/info.controller';
-import DownloadController from './controller/download.controller';
 
 export default function RouteConfig($routeProvider, $locationProvider) {
     $routeProvider
