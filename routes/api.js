@@ -5,20 +5,22 @@ var multer = require('multer');
 var gridfsStorage = require('gridfs-storage-engine')({ url: config.database.connection });
 var upload = multer({ storage: gridfsStorage });
 var mongo = require('mongodb');
-var MongoClient = mongo.MongoClient;
 var database = undefined;
+var gfs = undefined;
 var Grid = require('gridfs-stream');
 var httpError = require('../helper/httpError');
 var uuid = require('node-uuid');
 var moment = require('moment');
 
 // connect to MongoDB
-MongoClient.connect(config.database.connection, function(err, db) {
+mongo.MongoClient.connect(config.database.connection, function(err, db) {
     if (err) {
         throw err;
     }
 
     database = db;
+
+    gfs = new Grid(database, mongo);
 });
 
 router.post('/upload', upload.array('files'), function(req, res, next) {
@@ -52,14 +54,24 @@ router.get('/files/:token', function(req, res, next) {
                 res.status(404);
             }
             else {
-                // stream download
-                gfs = new Grid(database, mongo);
-                var readStream = gfs.createReadStream({ _id: upload.files[0] });
+                var fileId = upload.files[0]
 
-                res.setHeader('Content-disposition', 'attachment; filename=dramaticpenguin.MOV');
-                res.setHeader('Content-type', 'video/quicktime');
+                gfs
+                    .files
+                    .find({ _id: fileId })
+                    .limit(1)
+                    .next(function(err, file) {
+                        if (err) {
+                            return next(httpError.createError(500, err));
+                        }
 
-                readStream.pipe(res);
+                        // stream download
+                        res.setHeader('Content-disposition', 'attachment; filename=' + file.filename);
+                        res.setHeader('Content-type', file.contentType);
+
+                        var readStream = gfs.createReadStream({ _id: fileId });
+                        readStream.pipe(res);
+                    });
             }
         });
 });
