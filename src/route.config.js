@@ -9,14 +9,9 @@ export default function RouteConfig($routeProvider, $locationProvider) {
             controller: UploadController,
             controllerAs: 'vm'
         })
-        .when('/info/:uploadToken', {
+        .when('/info/:token', {
             templateUrl: '/partials/info.html',
             controller: InfoController,
-            controllerAs: 'vm'
-        })
-        .when('/download/:uploadToken', {
-            templateUrl: '/partials/download.html',
-            controller: DownloadController,
             controllerAs: 'vm'
         })
         .otherwise({
