@@ -26,7 +26,7 @@
     "express": "~4.13.3",
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.4",
-    "gridfs-storage-engine": "https://github.com/MCeddy/gridfs-storage-engine.git#dev",
+    "gridfs-storage-engine": "^0.2.3",
     "html-webpack-plugin": "^1.6.1",
     "jade": "~1.11.0",
     "moment": "^2.10.6",
