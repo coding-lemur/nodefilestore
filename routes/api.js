@@ -54,7 +54,7 @@ router.get('/files/:token', function(req, res, next) {
                 res.status(404);
             }
             else {
-                var fileId = upload.files[0]
+                var fileId = upload.files[0];
 
                 gfs
                     .files
