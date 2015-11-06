@@ -38,10 +38,10 @@ router.post('/upload', upload.array('files'), function(req, res, next) {
     });
 });
 
-router.get('/files/:token', function(req, res, next) {
+router.get('/download/:token', function(req, res, next) {
     database
         .collection('uploads')
-        .find({ token: req.param('token') })
+        .find({ token: req.params.token })
         .limit(1)
         .next(function(err, upload) {
             if (err) {
@@ -68,6 +68,7 @@ router.get('/files/:token', function(req, res, next) {
                         // stream download
                         res.setHeader('Content-disposition', 'attachment; filename=' + file.filename);
                         res.setHeader('Content-type', file.contentType);
+                        res.setHeader('Content-length', file.length);
 
                         var readStream = gfs.createReadStream({ _id: fileId });
                         readStream.pipe(res);
