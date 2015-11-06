@@ -1,5 +1,5 @@
 export default function FilesizeFilter() {
-    return function(size) {
+    return (size) => {
         if (isNaN(size))
             size = 0;
 
