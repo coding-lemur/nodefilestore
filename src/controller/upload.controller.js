@@ -1,4 +1,5 @@
 import FileViewModel from './../viewmodels/file.viewmodel';
+import UploadViewModel from './../viewmodels/upload.viewmodel';
 import { FilePickerEventKeys } from './../filepicker/filePicker.directive';
 
 export default class UploadController {
@@ -9,6 +10,8 @@ export default class UploadController {
 
         this.files = [];
         this.isUploading = false;
+        this.showResultPannel = false;
+        this.upload = undefined;
 
         this.$scope.$on(FilePickerEventKeys.FilesSelected, (e, args) => {
             e.stopPropagation();
@@ -41,9 +44,11 @@ export default class UploadController {
         this.dataService.uploadFile(file)
             .then(data => { // successful
                 console.log('upload finished', data);
-                file.wasUploaded = true;
+                file.isUploadFinished = true;
 
-                this.$location.path('/info/' + data.token);
+                this.showResultPannel = true;
+                this.upload = new UploadViewModel(data.token, data.expirationDate);
+
                 //this.processQueue(++index);
             }, e => { // error
                 console.error(e);

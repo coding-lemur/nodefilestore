@@ -10,6 +10,6 @@ export default class FileViewModel {
         this.date = file.lastModifiedDate;
         this.originalFile = file;
         this.uploadedPercentage = 0;
-        this.wasUploaded = false;
+        this.isUploadFinished = false;
     }
 }

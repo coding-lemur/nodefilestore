@@ -1,8 +1,23 @@
 extends layout
 
 block header
-    base(href='/')
     script(type='text/javascript', src='/app.js')
 
 block content
-    div(ng-view)
+    .upload-controller(ng-controller="uploadController as vm")
+        .empty-list(ng-show='vm.files.length === 0')
+            | Add one or more files please.
+        ul.file-list.collection(ng-show='vm.files.length > 0 && !vm.showResultPannel')
+            li.collection-item(ng-repeat='file in vm.files')
+                span.name {{ file.name }}&nbsp;
+                span.size ({{ file.size | filesize }})
+                .progress
+                    .determinate(ng-style='{ "width": file.uploadedPercentage + "%" }')
+        .result(ng-show='vm.showResultPannel')
+            h1 finished uploading
+            p share this download link (<strong>expires on {{ vm.upload.expirationDate | date:'short' }}</strong>):
+            p
+                a(ng-href='{{ vm.upload.downloadUrl }}') {{ vm.upload.downloadUrl }}
+        .fixed-action-btn
+            a.btn-floating.btn-large.red(file-picker)
+                i.large.material-icons add
