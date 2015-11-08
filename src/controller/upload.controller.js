@@ -50,11 +50,8 @@ export default class UploadController {
                 file.downloadToken = data.token;
                 file.downloadUrl = data.downloadUrl;
                 file.expirationDate = data.expirationDate;
-
-                //this.processQueue(++index);
             }, e => { // error
                 console.error(e);
-                //this.processQueue(++index);
             }, percentage => { // notify
                 file.uploadedPercentage = percentage;
             });
