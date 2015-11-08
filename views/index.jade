@@ -6,7 +6,9 @@ block header
 block content
     .upload-controller(ng-controller="uploadController as vm")
         .empty-list(ng-show='vm.files.length === 0')
-            | Add one or more files please.
+            p With <i>nodefilestore</i> you can share files very easy.
+            p Upload a file and you get a download link for sharing with your friend.
+            p please not: every download link expire after <strong>7 days</strong>.
         ul.file-list.collection(ng-show='vm.files.length > 0 && !vm.showResultPannel')
             li.collection-item(ng-repeat='file in vm.files')
                 .file-name {{ file.name }}&nbsp;

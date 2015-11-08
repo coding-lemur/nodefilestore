@@ -2,13 +2,17 @@ doctype html
 html(ng-app=angularApp)
     head
         title= title
+
         meta(charset='utf-8')
         meta(http-equiv='X-UA-Compatible', content='IE=edge')
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
         link(rel='stylesheet', href='/libs/Materialize/dist/css/materialize.min.css')
         link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
+
         script(type='text/javascript', src='/libs/jquery/dist/jquery.min.js')
         script(type='text/javascript', src='/libs/Materialize/dist/js/materialize.min.js')
+
         block header
     body
         include navigation
@@ -17,7 +21,7 @@ html(ng-app=angularApp)
                 block content
         footer.page-footer.orange
             .container
-                | Hörnchen & Fische
+                | Version 1
             .footer-copyright
                 .container
                     made by&nbsp;
