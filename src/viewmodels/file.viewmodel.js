@@ -9,7 +9,11 @@ export default class FileViewModel {
         this.mimeType = file.type;
         this.date = file.lastModifiedDate;
         this.originalFile = file;
+
         this.uploadedPercentage = 0;
         this.isUploadFinished = false;
+        this.downloadToken = undefined;
+        this.expirationDate = undefined;
+        this.downloadUrl = undefined;
     }
 }

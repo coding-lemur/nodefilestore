@@ -33,7 +33,8 @@ router.post('/upload', upload.array('files'), function(req, res, next) {
 
         res.status(201).json({
             token: upload.token,
-            expirationDate: upload.expirationDate
+            expirationDate: upload.expirationDate,
+            downloadUrl: config.baseUrl + '/api/download/' + upload.token
         });
     });
 });

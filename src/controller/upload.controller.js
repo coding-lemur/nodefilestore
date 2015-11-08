@@ -1,5 +1,4 @@
 import FileViewModel from './../viewmodels/file.viewmodel';
-import UploadViewModel from './../viewmodels/upload.viewmodel';
 import { FilePickerEventKeys } from './../filepicker/filePicker.directive';
 
 export default class UploadController {
@@ -9,9 +8,8 @@ export default class UploadController {
         this.dataService = dataService;
 
         this.files = [];
+        this.fileIndex = 0;
         this.isUploading = false;
-        this.showResultPannel = false;
-        this.upload = undefined;
 
         this.$scope.$on(FilePickerEventKeys.FilesSelected, (e, args) => {
             e.stopPropagation();
@@ -28,31 +26,35 @@ export default class UploadController {
                 this.files.push(new FileViewModel(file));
             }
 
-            this.processQueue(0);
+            this.processQueue();
         });
     }
 
-    processQueue(index) {
-        if (index >= this.files.length) {
+    processQueue() {
+        if (this.fileIndex >= this.files.length) {
             return;
         }
 
-        var file = this.files[index];
+        console.log('startUpload()', this.fileIndex);
 
-        console.log('startUpload()', index);
+        var file = this.files[this.fileIndex];
 
         this.dataService.uploadFile(file)
             .then(data => { // successful
                 console.log('upload finished', data);
-                file.isUploadFinished = true;
 
-                this.showResultPannel = true;
-                this.upload = new UploadViewModel(data.token, data.expirationDate);
+                this.fileIndex++;
+                this.isUploading = false;
+
+                file.isUploadFinished = true;
+                file.downloadToken = data.token;
+                file.downloadUrl = data.downloadUrl;
+                file.expirationDate = data.expirationDate;
 
                 //this.processQueue(++index);
             }, e => { // error
                 console.error(e);
-                this.processQueue(++index);
+                //this.processQueue(++index);
             }, percentage => { // notify
                 file.uploadedPercentage = percentage;
             });
