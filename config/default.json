@@ -1,4 +1,5 @@
 {
+  "baseUrl": "http://localhost:3000",
   "database": {
     "connection": "mongodb://localhost:27017/nodefilestore"
   }
