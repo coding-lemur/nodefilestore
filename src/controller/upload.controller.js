@@ -35,7 +35,7 @@ export default class UploadController {
             return;
         }
 
-        console.log('startUpload()', this.fileIndex);
+        console.log('start upload', this.fileIndex);
 
         var file = this.files[this.fileIndex];
 

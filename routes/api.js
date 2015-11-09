@@ -6,8 +6,6 @@ var gridfsStorage = require('gridfs-storage-engine')({ url: config.database.conn
 var upload = multer({ storage: gridfsStorage });
 var mongo = require('mongodb');
 var database = undefined;
-var gfs = undefined;
-var Grid = require('gridfs-stream');
 var httpError = require('../helper/httpError');
 var uuid = require('node-uuid');
 var moment = require('moment');
@@ -19,8 +17,6 @@ mongo.MongoClient.connect(config.database.connection, function(err, db) {
     }
 
     database = db;
-
-    gfs = new Grid(database, mongo);
 });
 
 router.post('/upload', upload.array('files'), function(req, res, next) {
@@ -34,48 +30,13 @@ router.post('/upload', upload.array('files'), function(req, res, next) {
         res.status(201).json({
             token: upload.token,
             expirationDate: upload.expirationDate,
-            downloadUrl: config.baseUrl + '/api/download/' + upload.token
+            downloadUrl: config.baseUrl + '/download/' + upload.token
         });
     });
 });
 
-router.get('/download/:token', function(req, res, next) {
-    database
-        .collection('uploads')
-        .find({ token: req.params.token })
-        .limit(1)
-        .next(function(err, upload) {
-            if (err) {
-                return next(httpError.createError(500, err));
-            }
-
-            var now = new Date();
-
-            if (now > upload.expirationDate) { // expired
-                res.status(404);
-            }
-            else {
-                var fileId = upload.files[0];
-
-                gfs
-                    .files
-                    .find({ _id: fileId })
-                    .limit(1)
-                    .next(function(err, file) {
-                        if (err) {
-                            return next(httpError.createError(500, err));
-                        }
-
-                        // stream download
-                        res.setHeader('Content-disposition', 'attachment; filename=' + file.filename);
-                        res.setHeader('Content-type', file.contentType);
-                        res.setHeader('Content-length', file.length);
-
-                        var readStream = gfs.createReadStream({ _id: fileId });
-                        readStream.pipe(res);
-                    });
-            }
-        });
+router.get('/download/:token', function(req, res) {
+    res.redirect(301, '/download/' + req.params.token);
 });
 
 function insertUpload(fileIds, callback) {
