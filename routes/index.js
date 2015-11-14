@@ -38,8 +38,8 @@ router.get('/download/:token', function(req, res, next) {
 
             var now = new Date();
 
-            if (now > upload.expirationDate) { // expired
-                res.status(404);
+            if (!upload || now > upload.expirationDate) { // expired
+                res.sendStatus(404);
             }
             else {
                 var fileId = upload.files[0];
