@@ -27,41 +27,51 @@ router.get('/', function(req, res) {
 });
 
 router.get('/download/:token', function(req, res, next) {
+    var now = new Date();
+
     database
         .collection('uploads')
-        .find({ 'token': req.params.token })
+        .find({
+            'token': req.params.token,
+            'expirationDate': { '$gte': now }
+        })
         .limit(1)
         .next(function(err, upload) {
             if (err) {
                 return next(httpError.createError(500, err));
             }
 
-            var now = new Date();
-
-            if (!upload || now > upload.expirationDate) { // expired
-                res.sendStatus(404);
+            if (!upload) {
+                var fileNotFoundError = httpError.createError(404);
+                fileNotFoundError.isFromDownloadRoute = true;
+                return next(fileNotFoundError);
             }
-            else {
-                var fileId = upload.files[0];
 
-                gfs
-                    .files
-                    .find({ '_id': fileId })
-                    .limit(1)
-                    .next(function(err, file) {
-                        if (err) {
-                            return next(httpError.createError(500, err));
-                        }
+            var fileId = upload.files[0];
 
-                        // stream download
-                        res.setHeader('Content-disposition', 'attachment; filename=' + file.filename);
-                        res.setHeader('Content-type', file.contentType);
-                        res.setHeader('Content-length', file.length);
+            gfs
+                .files
+                .find({ '_id': fileId })
+                .limit(1)
+                .next(function(err, file) {
+                    if (err) {
+                        return next(httpError.createError(500, err));
+                    }
 
-                        var readStream = gfs.createReadStream({ _id: fileId });
-                        readStream.pipe(res);
-                    });
-            }
+                    if (!file) {
+                        var fileNotFoundError = httpError.createError(404);
+                        fileNotFoundError.isFromDownloadRoute = true;
+                        return next(fileNotFoundError);
+                    }
+
+                    // stream download
+                    res.setHeader('Content-disposition', 'attachment; filename=' + file.filename);
+                    res.setHeader('Content-type', file.contentType);
+                    res.setHeader('Content-length', file.length);
+
+                    var readStream = gfs.createReadStream({ _id: fileId });
+                    readStream.pipe(res);
+                });
         });
 });
 
