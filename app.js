@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var packageJson = require('./package.json');
 
 var indexRoutes = require('./routes/index');
 var apiRoutes = require('./routes/api');
@@ -21,6 +22,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// make special data accessible to all views
+app.use(function(req, res, next) {
+    res.locals.version = packageJson.version;
+    next();
+});
 
 app.use('/', indexRoutes);
 app.use('/api', apiRoutes);

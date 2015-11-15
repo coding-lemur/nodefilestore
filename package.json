@@ -1,6 +1,6 @@
 {
   "name": "nodefilestore",
-  "version": "0.0.1",
+  "version": "0.9.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/MCeddy/nodefilestore.git"
