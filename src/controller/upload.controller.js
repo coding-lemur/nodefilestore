@@ -35,14 +35,10 @@ export default class UploadController {
             return;
         }
 
-        console.log('start upload', this.fileIndex);
-
         var file = this.files[this.fileIndex];
 
         this.dataService.uploadFile(file)
             .then(data => { // successful
-                console.log('upload finished', data);
-
                 this.fileIndex++;
                 this.isUploading = false;
 
