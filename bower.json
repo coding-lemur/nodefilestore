@@ -1,6 +1,6 @@
 {
   "name": "nodefilestore",
-  "version": "0.9.5",
+  "version": "1.0.0",
   "homepage": "https://github.com/MCeddy/nodefilestore",
   "authors": [
     "René Schimmelpfennig <mail@reneschimmelpfennig.de>"
@@ -18,7 +18,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.7",
+    "angular": "~1.4.8",
     "Materialize": "materialize#~0.97.1"
   }
 }
