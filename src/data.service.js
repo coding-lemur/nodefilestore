@@ -19,9 +19,8 @@ export default class DataService {
         });
 
         xhr.addEventListener('readystatechange', () => {
-            if (xhr.readyState === 4) { // download response finished
-                var data = xhr.responseText;
-                deferred.resolve(JSON.parse(data));
+            if ((xhr.readyState === 4) && (xhr.status === 201)) { // response download finished
+                deferred.resolve(JSON.parse(xhr.responseText));
             }
         });
 
@@ -37,7 +36,8 @@ export default class DataService {
         formData.append('files', file.originalFile);
 
         xhr.open('POST', '/api/upload', true);
-        xhr.overrideMimeType('text/plain; charset=x-user-defined-binary');
+        xhr.overrideMimeType('application/json');
+        xhr.setRequestHeader('Accept', 'application/json');
         xhr.send(formData);
 
         return deferred.promise;
