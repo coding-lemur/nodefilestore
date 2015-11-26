@@ -43,9 +43,12 @@ export default class UploadController {
                 this.isUploading = false;
 
                 file.isUploadFinished = true;
-                file.downloadToken = data.token;
-                file.downloadUrl = data.downloadUrl;
-                file.expirationDate = data.expirationDate;
+
+                if (data) {
+                    file.downloadToken = data.token;
+                    file.downloadUrl = data.downloadUrl;
+                    file.expirationDate = data.expirationDate;
+                }
             }, e => { // error
                 console.error(e);
             }, percentage => { // notify
