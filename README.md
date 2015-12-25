@@ -4,6 +4,14 @@ This is a very small file upload service base on nodejs and mongodb/GridFS.
 For the frontend we using AngularJS.
 Files can Upload without registration. Each file will expiring after 7 days and will totally removed from the databse by an nightly task (see "nodefilestore-cleanup" repository).
 
+## features
+- cross-platform (nodejs)
+- modern frontend (AngularJS and ES6)
+- streaming files into mongoDB (GridFS)
+- anonymous uploading
+- auto cleanup of expired files ([see "nodefilestore-cleanup" repo](https://github.com/MCeddy/nodefilestore-cleanup))
+- open source
+
 ## setup
 - first make sure you have an mongodb instance running and enough free space for uploaded files
 - make sure you have nodejs installed (recommended version >= 4.0)
@@ -17,3 +25,8 @@ Files can Upload without registration. Each file will expiring after 7 days and 
 - run "npm run build" to build frontend scripts with webpack
 - start webapp with "node bin/www"
 - open "http://localhost:3000" in your browser
+- optionally:
+-- install Python (>= 3.0)
+-- download the [cleanup script](https://github.com/MCeddy/nodefilestore-cleanup/blob/master/cleanup.py))
+-- change connection string to your MongoDB instance
+-- setup an daily job for running the script on your OS
