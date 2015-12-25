@@ -9,7 +9,7 @@ block content
             p <i>nodefilestore</i> is an easy filesharing service.
             p You can anonymously upload files and you get a secret download link for sharing with your friend.
             p After 7 days, the link is invalid, and the files are deleted.
-        ul.file-list.collection(ng-show='vm.files.length > 0 && !vm.showResultPannel')
+        ul.file-list.collection(ng-show='vm.files.length > 0')
             li.collection-item(ng-repeat='file in vm.files')
                 .file-name {{ file.name }}&nbsp;
                 .file-size {{ file.size | filesize }}
