@@ -9,7 +9,7 @@ Files can Upload without registration. Each file will expiring after 7 days and 
 - modern frontend (AngularJS and ES6)
 - streaming files into mongoDB (GridFS)
 - anonymous uploading
-- auto cleanup of expired files ([see "nodefilestore-cleanup" repo](https://github.com/MCeddy/nodefilestore-cleanup))
+- auto cleanup of expired files (see [nodefilestore-cleanup](https://github.com/MCeddy/nodefilestore-cleanup) repo)
 - open source
 
 ## setup
@@ -26,7 +26,7 @@ Files can Upload without registration. Each file will expiring after 7 days and 
 - start webapp with "node bin/www"
 - open "http://localhost:3000" in your browser
 - optionally:
--- install Python (>= 3.0)
--- download the [cleanup script](https://github.com/MCeddy/nodefilestore-cleanup/blob/master/cleanup.py))
--- change connection string to your MongoDB instance
--- setup an daily job for running the script on your OS
+ - install Python (>= 3.0)
+ - download the [cleanup script](https://github.com/MCeddy/nodefilestore-cleanup/blob/master/cleanup.py))
+ - change connection string to your MongoDB instance
+ - setup an daily job for running the script on your OS
