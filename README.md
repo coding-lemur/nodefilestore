@@ -1,4 +1,5 @@
 # nodefilestore
+[![Dependency Status](https://david-dm.org/MCeddy/nodefilestore.svg)](https://david-dm.org/MCeddy/nodefilestore)
 ## description
 This is a very lightweight filesharing service base on nodejs and mongodb/GridFS.
 For the frontend we using AngularJS and ES6.
