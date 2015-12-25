@@ -2,7 +2,6 @@
 
 // Modules
 var webpack = require('webpack');
-//var autoprefixer = require('autoprefixer-core');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = function makeWebpackConfig(options) {
@@ -93,21 +92,6 @@ module.exports = function makeWebpackConfig(options) {
             test: /\.js$/,
             loader: 'babel?optional[]=runtime',
             exclude: [/node_modules/, /libs/]
-        }, {
-            // ASSET LOADER
-            // Reference: https://github.com/webpack/file-loader
-            // Copy png, jpg, jpeg, gif, svg, woff, woff2, ttf, eot files to output
-            // Rename the file using the asset hash
-            // Pass along the updated reference to your code
-            // You can add here any file extension you want to get copied to your output
-            test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-            loader: 'file'
-        }, {
-            // HTML LOADER
-            // Reference: https://github.com/webpack/raw-loader
-            // Allow loading html through js
-            test: /\.html$/,
-            loader: 'raw'
         }]
     };
 
@@ -126,51 +110,12 @@ module.exports = function makeWebpackConfig(options) {
         })
     }
 
-    // CSS LOADER
-    // Reference: https://github.com/webpack/css-loader
-    // Allow loading css through js
-    //
-    // Reference: https://github.com/postcss/postcss-loader
-    // Postprocess your css with PostCSS plugins
-    var cssLoader = {
-        test: /\.css$/,
-        // Reference: https://github.com/webpack/extract-text-webpack-plugin
-        // Extract css files in production builds
-        //
-        // Reference: https://github.com/webpack/style-loader
-        // Use style-loader in development for hot-loading
-        loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss')
-    };
-
-    // Skip loading css in test mode
-    if (TEST) {
-        // Reference: https://github.com/webpack/null-loader
-        // Return an empty module
-        cssLoader.loader = 'null'
-    }
-
-    // Add cssLoader to the loader list
-    //config.module.loaders.push(cssLoader);
-
     var sassLoader = {
         test: /\.scss$/,
         // Passing indentedSyntax query param to node-sass
         loader: 'style!css!sass'
     };
     config.module.loaders.push(sassLoader);
-
-    /**
-     * PostCSS
-     * Reference: https://github.com/postcss/autoprefixer-core
-     * Add vendor prefixes to your css
-     */
-    /*
-    config.postcss = [
-        autoprefixer({
-            browsers: ['last 2 version']
-        })
-    ];
-    */
 
     /**
      * Plugins

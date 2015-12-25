@@ -13,7 +13,6 @@
     "test:live": "karma start --auto-watch --no-single-run"
   },
   "dependencies": {
-    "autoprefixer-core": "^6.0.1",
     "babel-core": "^6.3.26",
     "babel-loader": "^6.2.0",
     "babel-runtime": "^6.3.19",
@@ -24,7 +23,6 @@
     "debug": "~2.2.0",
     "express": "~4.13.3",
     "extract-text-webpack-plugin": "^0.9.1",
-    "file-loader": "^0.8.5",
     "gridfs-storage-engine": "^0.2.3",
     "gridfs-stream": "^1.1.1",
     "jade": "~1.11.0",
@@ -35,8 +33,6 @@
     "node-libs-browser": "^0.5.3",
     "node-sass": "^3.4.2",
     "node-uuid": "^1.4.7",
-    "postcss-loader": "^0.8.0",
-    "raw-loader": "^0.5.1",
     "sass-loader": "^3.1.2",
     "serve-favicon": "~2.3.0",
     "style-loader": "^0.13.0",
