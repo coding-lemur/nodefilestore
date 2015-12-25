@@ -1,4 +1,7 @@
 export class FilePickerEventKeys {
+    /**
+     * @return {string}
+     */
     static get FilesSelected() {
         return 'FilePicker.FilesSelected';
     }
@@ -20,7 +23,10 @@ function linkFunction($scope, $element, attributes) {
     fileInput.addEventListener('change', () => {
         $scope.$apply(() => {
             $scope.$emit(FilePickerEventKeys.FilesSelected, { files: fileInput.files });
-        })
+        });
+
+        // reset input element
+        fileInput.value = '';
     });
 
     angular.element(fileInput).insertAfter($element);
