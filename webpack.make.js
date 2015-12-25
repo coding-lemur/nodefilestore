@@ -3,7 +3,6 @@
 // Modules
 var webpack = require('webpack');
 //var autoprefixer = require('autoprefixer-core');
-//var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = function makeWebpackConfig(options) {
@@ -186,21 +185,6 @@ module.exports = function makeWebpackConfig(options) {
             disable: !BUILD || TEST
         })
     ];
-
-    // Skip rendering index.html in test mode
-    /*
-    if (!TEST) {
-        // Reference: https://github.com/ampedandwired/html-webpack-plugin
-        // Render index.html
-        config.plugins.push(
-            new HtmlWebpackPlugin({
-                template: './src/index.html',
-                inject: 'body',
-                minify: BUILD
-            })
-        )
-    }
-    */
 
     // Add build specific plugins
     if (BUILD) {
