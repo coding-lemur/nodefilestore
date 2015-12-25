@@ -19,6 +19,6 @@
   ],
   "dependencies": {
     "angular": "~1.4.8",
-    "Materialize": "materialize#~0.97.1"
+    "Materialize": "materialize#~0.97.5"
   }
 }
