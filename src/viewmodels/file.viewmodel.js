@@ -11,6 +11,7 @@ export default class FileViewModel {
         this.originalFile = file;
 
         this.uploadedPercentage = 0;
+        this.isUploading = false;
         this.isUploadFinished = false;
         this.downloadToken = undefined;
         this.expirationDate = undefined;

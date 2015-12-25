@@ -1,0 +1,17 @@
+ul.file-list {
+    li.file {
+        position: relative;
+
+        .remove-button {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            color: #9e9e9e;
+
+            &:hover {
+                color: #039be5;
+                cursor: pointer;
+            }
+        }
+    }
+}

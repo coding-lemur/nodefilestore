@@ -18,16 +18,31 @@ export default class UploadController {
                 return;
             }
 
-            this.isUploading = true;
-
             // add files to queue
             for (var i = 0; i < args.files.length; i++) {
-                var file = args.files[i];
-                this.files.push(new FileViewModel(file));
+                this.files.push(new FileViewModel(args.files[i]));
             }
-
-            this.processQueue();
         });
+    }
+
+    clear() {
+        this.files = [];
+    }
+
+    removeFromList(file) {
+        if (!file) {
+            return;
+        }
+
+        var index = this.files.indexOf(file);
+        if (index > -1) {
+            this.files.splice(index, 1);
+        }
+    }
+
+    startUpload() {
+        //this.isUploading = true;
+        //this.processQueue();
     }
 
     processQueue() {
