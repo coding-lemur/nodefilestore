@@ -1,6 +1,12 @@
 {
   "name": "nodefilestore",
   "version": "1.0.1",
+  "main": "./bin/www",
+  "author": "René Schimmelpfennig",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MCeddy/nodefilestore/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/MCeddy/nodefilestore.git"
