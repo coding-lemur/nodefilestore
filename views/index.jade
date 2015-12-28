@@ -2,9 +2,11 @@ extends layout
 
 block header
     link(rel='stylesheet', href='/app.min.css')
-    script(type='text/javascript', src='/app.min.js')
 
 block content
+    #upload-app
+
+//
     .upload-controller(ng-controller="uploadController as vm")
         .empty-container(ng-if='vm.files.length == 0')
             p <i>nodefilestore</i> is an easy filesharing service.
@@ -30,3 +32,6 @@ block content
                         .download-url download url:&nbsp;
                             a(ng-href='{{ file.downloadUrl }}') {{ file.downloadUrl }}
                         .download-expires expires on {{ file.expirationDate | date:'short' }}
+
+block footer
+    script(type='text/javascript', src='/app.min.js')
