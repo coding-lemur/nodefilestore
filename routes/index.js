@@ -21,8 +21,7 @@ mongo.MongoClient.connect(config.database.connection, function(err, db) {
 /* GET home page. */
 router.get('/', function(req, res) {
     res.render('index', {
-        title: 'nodefilestore',
-        angularApp: 'uploadApp'
+        title: 'nodefilestore'
     });
 });
 

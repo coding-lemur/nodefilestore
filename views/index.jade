@@ -4,14 +4,8 @@ block header
     link(rel='stylesheet', href='/app.min.css')
 
 block content
-    #upload-app
-
 //
     .upload-controller(ng-controller="uploadController as vm")
-        .empty-container(ng-if='vm.files.length == 0')
-            p <i>nodefilestore</i> is an easy filesharing service.
-            p You can anonymously upload files and you get a secret download link for sharing with your friend.
-            p After 7 days, the link is invalid, and the files are deleted.
         .filled-container(ng-if='vm.files.length > 0')
             ul.file-list.collection
                 li.collection-item.file(ng-repeat='file in vm.files')
@@ -21,17 +15,11 @@ block content
                         i.material-icons delete
                     .progress(ng-show='file.isUploading')
                         .determinate(ng-style='{ "width": file.uploadedPercentage + "%" }')
-            .action-area
-                a.waves-effect.waves-light.btn(ng-click='vm.clear()') clear
-                a.waves-effect.waves-light.btn(ng-click='vm.startUpload()') upload
-        .fixed-action-btn
-            a.btn-floating.btn-large.red(file-picker, ng-class='{ disabled: vm.isUploading }')
-                i.large.material-icons add
-                //
-                    .result(ng-show='file.isUploadFinished')
-                        .download-url download url:&nbsp;
-                            a(ng-href='{{ file.downloadUrl }}') {{ file.downloadUrl }}
-                        .download-expires expires on {{ file.expirationDate | date:'short' }}
+//
+    .result(ng-show='file.isUploadFinished')
+        .download-url download url:&nbsp;
+            a(ng-href='{{ file.downloadUrl }}') {{ file.downloadUrl }}
+        .download-expires expires on {{ file.expirationDate | date:'short' }}
 
 block footer
     script(type='text/javascript', src='/app.min.js')
