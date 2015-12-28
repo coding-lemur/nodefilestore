@@ -11,7 +11,7 @@ export default class FilesList extends React.Component {
         var fileNodes = this.props.files.map((file) => {
             return (
                 <li className="collection-item file">
-                    <File file={file} />
+                    <File file={file} key={file.id} />
                 </li>
             );
         });

@@ -11,7 +11,7 @@ export default class FilledFiles extends React.Component {
     render() {
         return (
             <div className="filled-files">
-                <FilesList />
+                <FilesList files={this.props.files} />
                 <FilesActionArea />
             </div>
         )

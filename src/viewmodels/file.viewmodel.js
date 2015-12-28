@@ -1,5 +1,7 @@
 export default class FileViewModel {
     constructor(file) {
+        this.id = Date.now();
+
         if (!file) {
             return;
         }

@@ -20,14 +20,18 @@ export default class UploadForm extends React.Component {
             node = <EmptyFiles />;
         }
         else {
-            node = <FilledFiles />;
+            node = <FilledFiles files={this.state.files} />;
         }
 
         return (
             <div className="upload-form">
                 {node}
-                <UploadButton />
+                <UploadButton onFilesAdded={this.handleFilesAdded.bind(this)} />
             </div>
         );
+    }
+
+    handleFilesAdded(files) {
+        this.setState({ files: this.state.files.concat(files) });
     }
 }
