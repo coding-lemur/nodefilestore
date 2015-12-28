@@ -1,7 +1,8 @@
 extends layout
 
 block header
-    script(type='text/javascript', src='/app.js')
+    link(rel='stylesheet', href='/app.min.css')
+    script(type='text/javascript', src='/app.min.js')
 
 block content
     .upload-controller(ng-controller="uploadController as vm")
