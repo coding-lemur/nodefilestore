@@ -9,6 +9,12 @@ export default class File extends React.Component {
     }
 
     render() {
+        var additionalNodes = [];
+
+        if (this.props.file.isUploading) {
+            additionalNodes.push(<Progress value={this.props.file.uploadedPercentage} />);
+        }
+
         return (
             <li className="collection-item file">
                 <div className="file-name">{ this.props.file.name }</div>
@@ -16,7 +22,7 @@ export default class File extends React.Component {
                 <a className="remove-button">
                     <i className="material-icons">delete</i>
                 </a>
-                <Progress value={this.props.file.uploadedPercentage} />
+                {additionalNodes}
             </li>
         );
     }

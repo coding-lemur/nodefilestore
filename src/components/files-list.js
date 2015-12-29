@@ -8,9 +8,10 @@ export default class FilesList extends React.Component {
     }
 
     render() {
+        let i = 0;
         var fileNodes = this.props.files.map((file) => {
             return (
-                <File file={file} key={file.id} />
+                <File file={file} key={i++} />
             );
         });
 
