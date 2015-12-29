@@ -3,23 +3,5 @@ extends layout
 block header
     link(rel='stylesheet', href='/app.min.css')
 
-block content
-//
-    .upload-controller(ng-controller="uploadController as vm")
-        .filled-container(ng-if='vm.files.length > 0')
-            ul.file-list.collection
-                li.collection-item.file(ng-repeat='file in vm.files')
-                    .file-name {{ file.name }}
-                    .file-size {{ file.size | filesize }}
-                    a.remove-button(ng-click='vm.removeFromList(file)')
-                        i.material-icons delete
-                    .progress(ng-show='file.isUploading')
-                        .determinate(ng-style='{ "width": file.uploadedPercentage + "%" }')
-//
-    .result(ng-show='file.isUploadFinished')
-        .download-url download url:&nbsp;
-            a(ng-href='{{ file.downloadUrl }}') {{ file.downloadUrl }}
-        .download-expires expires on {{ file.expirationDate | date:'short' }}
-
 block footer
     script(type='text/javascript', src='/app.min.js')
