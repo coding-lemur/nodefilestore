@@ -1,6 +1,6 @@
 {
   "name": "nodefilestore",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "main": "./bin/www",
   "author": "René Schimmelpfennig",
   "license": "MIT",
