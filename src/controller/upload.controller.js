@@ -25,21 +25,6 @@ export default class UploadController {
         });
     }
 
-    clear() {
-        this.files = [];
-    }
-
-    removeFromList(file) {
-        if (!file) {
-            return;
-        }
-
-        var index = this.files.indexOf(file);
-        if (index > -1) {
-            this.files.splice(index, 1);
-        }
-    }
-
     startUpload() {
         //this.isUploading = true;
         //this.processQueue();

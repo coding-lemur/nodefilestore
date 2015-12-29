@@ -11,7 +11,7 @@ export default class FilesList extends React.Component {
         let i = 0;
         var fileNodes = this.props.files.map((file) => {
             return (
-                <File file={file} key={i++} />
+                <File file={file} key={i++} onDeleteFile={this.props.onDeleteFile} />
             );
         });
 

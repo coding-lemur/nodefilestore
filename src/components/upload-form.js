@@ -22,7 +22,8 @@ export default class UploadForm extends React.Component {
         else {
             node = <FilledFiles files={this.state.files}
                                 onClearFiles={this.handleClearFiles.bind(this)}
-                                onUploadFiles={this.handleFilesUpload.bind(this)} />;
+                                onUploadFiles={this.handleFilesUpload.bind(this)}
+                                onDeleteFile={this.handleDeleteFile.bind(this)} />;
         }
 
         return (
@@ -43,5 +44,19 @@ export default class UploadForm extends React.Component {
 
     handleClearFiles() {
         this.setState({ files: [] });
+    }
+
+    handleDeleteFile(file) {
+        if (!file) {
+            return;
+        }
+
+        var files = this.state.files;
+        var index = files.indexOf(file);
+
+        if (index > -1) {
+            files.splice(index, 1);
+            this.setState({ files: files });
+        }
     }
 }
