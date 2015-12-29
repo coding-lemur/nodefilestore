@@ -20,7 +20,9 @@ export default class UploadForm extends React.Component {
             node = <EmptyFiles />;
         }
         else {
-            node = <FilledFiles files={this.state.files} />;
+            node = <FilledFiles files={this.state.files}
+                                onClearFiles={this.handleClearFiles.bind(this)}
+                                onUploadFiles={this.handleFilesUpload.bind(this)} />;
         }
 
         return (
@@ -33,5 +35,13 @@ export default class UploadForm extends React.Component {
 
     handleFilesAdded(files) {
         this.setState({ files: this.state.files.concat(files) });
+    }
+
+    handleFilesUpload() {
+        alert('uploading...');
+    }
+
+    handleClearFiles() {
+        this.setState({ files: [] });
     }
 }
