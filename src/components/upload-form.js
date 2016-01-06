@@ -2,7 +2,7 @@ import React from 'react';
 
 import EmptyFiles from './empty-files';
 import FilledFiles from './filled-files';
-import UploadButton from './upload-button';
+import AddFilesButton from './add-files-button';
 
 export default class UploadForm extends React.Component {
     constructor(props) {
@@ -29,7 +29,7 @@ export default class UploadForm extends React.Component {
         return (
             <div className="upload-form">
                 {node}
-                <UploadButton onFilesAdded={this.handleFilesAdded.bind(this)} />
+                <AddFilesButton onFilesAdded={this.handleFilesAdded.bind(this)} />
             </div>
         );
     }

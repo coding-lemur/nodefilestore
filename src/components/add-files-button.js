@@ -2,7 +2,7 @@ import React from 'react';
 
 import FileViewModel from '../viewmodels/file.viewmodel';
 
-export default class UploadButton extends React.Component {
+export default class AddFilesButton extends React.Component {
     constructor(props) {
         super(props);
     }
