@@ -2,12 +2,12 @@
 [![Dependency Status](https://david-dm.org/MCeddy/nodefilestore.svg)](https://david-dm.org/MCeddy/nodefilestore)
 ## description
 This is a very lightweight filesharing service base on nodejs and mongodb/GridFS.
-For the frontend we using AngularJS and ES6.
+For the frontend we using react and ES6.
 Files can upload and download without registration. Each file will expiring after 7 days and will totally removed from the databse by an nightly task (see [nodefilestore-cleanup](https://github.com/MCeddy/nodefilestore-cleanup) repo).
 
 ## features
 - cross-platform (nodejs)
-- modern frontend (AngularJS and ES6)
+- modern frontend (react and ES6)
 - streaming files into mongoDB (GridFS)
 - anonymous uploading
 - auto cleanup of expired files (see [nodefilestore-cleanup](https://github.com/MCeddy/nodefilestore-cleanup) repo)
