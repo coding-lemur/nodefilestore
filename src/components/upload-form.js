@@ -1,34 +1,36 @@
 import React from 'react';
 
+import AddFilesButton from './add-files-button';
 import EmptyFiles from './empty-files';
 import FilledFiles from './filled-files';
-import AddFilesButton from './add-files-button';
+import DataService from '../helper/data-service';
 
 export default class UploadForm extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            files: []
+            files: [],
+            isBusy: false
         };
     }
 
     render() {
-        var node;
+        var filesContainerNode;
 
         if (this.state.files.length === 0) {
-            node = <EmptyFiles />;
+            filesContainerNode = <EmptyFiles />;
         }
         else {
-            node = <FilledFiles files={this.state.files}
-                                onClearFiles={this.handleClearFiles.bind(this)}
-                                onUploadFiles={this.handleFilesUpload.bind(this)}
-                                onDeleteFile={this.handleDeleteFile.bind(this)} />;
+            filesContainerNode = <FilledFiles files={this.state.files}
+                                              onDeleteFile={this.handleDeleteFile.bind(this)}
+                                              onClearFiles={this.handleClearFiles.bind(this)}
+                                              onUploadFiles={this.handleFilesUpload.bind(this)} />;
         }
 
         return (
             <div className="upload-form">
-                {node}
+                {filesContainerNode}
                 <AddFilesButton onFilesAdded={this.handleFilesAdded.bind(this)} />
             </div>
         );
@@ -39,7 +41,24 @@ export default class UploadForm extends React.Component {
     }
 
     handleFilesUpload() {
-        alert('uploading...');
+        var dataService = new DataService();
+        var notify = (file, fileIndex) => {
+            // TODO implement logic to set file percentage here!
+            var newFiles = this.state.files;
+            newFiles[fileIndex] = file;
+
+            this.setState({ files: newFiles });
+        };
+        dataService.uploadFiles(this.state.files, notify)
+            .then((response) => {
+                console.log('upload finished', response);
+                this.setState({ isBusy: false });
+            },
+            (error) => {
+                console.error(error);
+                this.setState({ isBusy: false });
+            });
+        this.setState({ isBusy: true });
     }
 
     handleClearFiles() {

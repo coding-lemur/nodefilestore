@@ -8,16 +8,13 @@ export default class FilesList extends React.Component {
     }
 
     render() {
-        let i = 0;
-        var fileNodes = this.props.files.map((file) => {
-            return (
-                <File file={file} key={i++} onDeleteFile={this.props.onDeleteFile} />
-            );
-        });
-
         return (
             <ul className="file-list collection">
-                {fileNodes}
+                {this.props.files.map((file, index) => {
+                    return (
+                        <File file={file} key={index} onDeleteFile={this.props.onDeleteFile} />
+                    );
+                })}
             </ul>
         )
     }

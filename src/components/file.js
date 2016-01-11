@@ -9,10 +9,10 @@ export default class File extends React.Component {
     }
 
     render() {
-        var additionalNodes = [];
+        var progressNode;
 
         if (this.props.file.isUploading) {
-            additionalNodes.push(<Progress value={this.props.file.uploadedPercentage} />);
+            progressNode = <Progress value={this.props.file.uploadedPercentage} />;
         }
 
         return (
@@ -22,7 +22,7 @@ export default class File extends React.Component {
                 <a className="remove-button" onClick={this.removeFile.bind(this)}>
                     <i className="material-icons">delete</i>
                 </a>
-                {additionalNodes}
+                {progressNode}
             </li>
         );
     }
