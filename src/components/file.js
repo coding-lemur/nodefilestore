@@ -9,19 +9,27 @@ export default class File extends React.Component {
     }
 
     render() {
-        var progressNode;
+        var {file} = this.props;
 
-        if (this.props.file.isUploading) {
-            progressNode = <Progress value={this.props.file.uploadedPercentage} />;
+        var progressNode;
+        if (file.isUploading) {
+            progressNode = <Progress value={file.uploadedPercentage} />;
+        }
+
+        var deleteButtonNode;
+        if (this.props.showDeleteButton && !file.isUploadFinished) {
+            deleteButtonNode = (
+                <a className="remove-button" onClick={this.removeFile.bind(this)}>
+                    <i className="material-icons">delete</i>
+                </a>
+            );
         }
 
         return (
             <li className="collection-item file">
-                <div className="file-name">{ this.props.file.name }</div>
-                <div className="file-size">{ FileSizeFormatter.humanize(this.props.file.size) }</div>
-                <a className="remove-button" onClick={this.removeFile.bind(this)}>
-                    <i className="material-icons">delete</i>
-                </a>
+                <div className="file-name">{file.name}</div>
+                <div className="file-size">{FileSizeFormatter.humanize(file.size)}</div>
+                {deleteButtonNode}
                 {progressNode}
             </li>
         );

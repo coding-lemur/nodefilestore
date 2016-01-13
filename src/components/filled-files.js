@@ -12,8 +12,10 @@ export default class FilledFiles extends React.Component {
         return (
             <div className="filled-files">
                 <FilesList files={this.props.files}
+                           showDeleteButtons={this.props.showDeleteButtons}
                            onDeleteFile={this.props.onDeleteFile} />
-                <FilesActionArea onClearFiles={this.props.onClearFiles}
+                <FilesActionArea disabled={this.props.disableActionArea}
+                                 onClearFiles={this.props.onClearFiles}
                                  onUploadFiles={this.props.onUploadFiles} />
             </div>
         )

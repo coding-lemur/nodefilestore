@@ -10,11 +10,12 @@ export default class FilesList extends React.Component {
     render() {
         return (
             <ul className="file-list collection">
-                {this.props.files.map((file, index) => {
-                    return (
-                        <File file={file} key={index} onDeleteFile={this.props.onDeleteFile} />
-                    );
-                })}
+                {this.props.files.map((file, index) => (
+                    <File file={file}
+                          showDeleteButton={this.props.showDeleteButtons}
+                          key={index}
+                          onDeleteFile={this.props.onDeleteFile} />
+                ))}
             </ul>
         )
     }

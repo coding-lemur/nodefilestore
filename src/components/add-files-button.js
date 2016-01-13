@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 
 import FileViewModel from '../viewmodels/file.viewmodel';
 
@@ -8,26 +9,35 @@ export default class AddFilesButton extends React.Component {
     }
 
     render() {
+        var btnClasses = classnames('btn-floating', 'btn-large', 'red', {
+            'disabled': this.props.disabled
+        });
+
         return (
             <div className="fixed-action-btn">
-                <a className="btn-floating btn-large red" onClick={this.openFilePicker.bind(this)}>
+                <a className={btnClasses} onClick={this.handleButtonClick.bind(this)}>
                     <i className="large material-icons">add</i>
                 </a>
-                <input id="file-picker" type="file" multiple style={{display: 'none'}} onChange={this.filesSelected.bind(this)} />
+                <input type="file" multiple style={{display: 'none'}}
+                       ref={(ref) => this.filePicker = ref}
+                       onChange={this.filesSelected.bind(this)} />
             </div>
         )
     }
 
-    openFilePicker(e) {
+    handleButtonClick(e) {
         e.preventDefault();
 
-        var filePicker = document.getElementById('file-picker');
-        filePicker.click();
+        if (this.props.disabled) {
+            return;
+        }
+
+        // open file-picker
+        this.filePicker.click();
     };
 
     filesSelected(e) {
-        var filePicker = document.getElementById('file-picker');
-        var files = filePicker.files;
+        var files = this.filePicker.files;
         var fileViewModels = [];
 
         // transform to viewmodels

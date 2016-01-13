@@ -17,8 +17,10 @@ export default class DataService {
                 var currentFileLoaded = e.loaded - loadedPreviousFiles;
                 var currentFileTotal = currentFile.size;
 
-                if (currentFileLoaded >= currentFileTotal) {
+                if (currentFileLoaded >= currentFileTotal) { // upload for current is finished
                     currentFile.isUploading = false;
+                    currentFile.isUploadFinished = true;
+
                     loadedPreviousFiles += currentFile.size;
 
                     if (fileIndex < files.length - 1) {

@@ -11,7 +11,7 @@ export default class UploadForm extends React.Component {
 
         this.state = {
             files: [],
-            isBusy: false
+            uploading: false
         };
     }
 
@@ -23,6 +23,8 @@ export default class UploadForm extends React.Component {
         }
         else {
             filesContainerNode = <FilledFiles files={this.state.files}
+                                              disableActionArea={this.state.uploading}
+                                              showDeleteButtons={!this.state.uploading}
                                               onDeleteFile={this.handleDeleteFile.bind(this)}
                                               onClearFiles={this.handleClearFiles.bind(this)}
                                               onUploadFiles={this.handleFilesUpload.bind(this)} />;
@@ -31,7 +33,8 @@ export default class UploadForm extends React.Component {
         return (
             <div className="upload-form">
                 {filesContainerNode}
-                <AddFilesButton onFilesAdded={this.handleFilesAdded.bind(this)} />
+                <AddFilesButton disabled={this.state.uploading}
+                                onFilesAdded={this.handleFilesAdded.bind(this)} />
             </div>
         );
     }
@@ -43,7 +46,6 @@ export default class UploadForm extends React.Component {
     handleFilesUpload() {
         var dataService = new DataService();
         var notify = (file, fileIndex) => {
-            // TODO implement logic to set file percentage here!
             var newFiles = this.state.files;
             newFiles[fileIndex] = file;
 
@@ -52,13 +54,13 @@ export default class UploadForm extends React.Component {
         dataService.uploadFiles(this.state.files, notify)
             .then((response) => {
                 console.log('upload finished', response);
-                this.setState({ isBusy: false });
+                this.setState({ uploading: false });
             },
             (error) => {
                 console.error(error);
-                this.setState({ isBusy: false });
+                this.setState({ uploading: false });
             });
-        this.setState({ isBusy: true });
+        this.setState({ uploading: true });
     }
 
     handleClearFiles() {
