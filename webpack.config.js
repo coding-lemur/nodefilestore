@@ -32,7 +32,9 @@ module.exports = {
                     /libs/
                 ],
                 loader: 'babel',
-query: {"presets": ["es2015", "react"]}
+                query: {
+                    "presets": [ "es2015", "react" ]
+                }
             },
             {
                 test: /\.json?$/,
