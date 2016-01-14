@@ -36,6 +36,7 @@ Files can upload and download without registration. Each file will expiring afte
 ### 1.1.0
 - switched frontend library from AngularJS to React
 - support of multiple files -> will bundled into an ZIP container on downloading
+
 ### 1.0.0
 - support of single file upload and downloading
 - AngularJS frontend
