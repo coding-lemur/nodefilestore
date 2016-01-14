@@ -20,7 +20,9 @@ mongo.MongoClient.connect(config.database.connection, function(err, db) {
 });
 
 router.post('/upload', upload.array('files'), function(req, res, next) {
-    var fileIds = [ req.files[0].gridfsEntry._id ];
+    var fileIds = req.files.map(function(file) {
+        return file.gridfsEntry._id;
+    });
 
     insertUpload(fileIds, function(err, result, upload) {
         if (err) {
