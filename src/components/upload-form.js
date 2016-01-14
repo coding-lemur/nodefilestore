@@ -2,36 +2,51 @@ import React from 'react';
 
 import AddFilesButton from './add-files-button';
 import EmptyFiles from './empty-files';
-import FilledFiles from './filled-files';
+import FilesList from './files-list';
+import FilesActionArea from './files-action-area';
 import DataService from '../helper/data-service';
 import dateFormat from 'dateformat';
 
 export default class UploadForm extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
+    static get defaultState() {
+        return {
             files: [],
             uploading: false,
             uploadFinished: false,
             downloadUrl: '',
             expirationDate: '',
             token: ''
-        };
+        }
+    }
+
+    constructor(props) {
+        super(props);
+
+        this.state = UploadForm.defaultState;
     }
 
     render() {
+        var hasFiles = (this.state.files.length > 0);
+
         var filesContainerNode;
-        if (this.state.files.length === 0) {
-            filesContainerNode = <EmptyFiles />;
+        if (hasFiles) {
+            filesContainerNode = (
+                <FilesList files={this.state.files}
+                           showDeleteButtons={!(this.state.uploading || this.state.uploadFinished)}
+                           onDeleteFile={this.handleDeleteFile.bind(this)} />
+            );
         }
         else {
-            filesContainerNode = <FilledFiles files={this.state.files}
-                                              disableActionArea={this.state.uploading || this.state.uploadFinished}
-                                              showDeleteButtons={!(this.state.uploading || this.state.uploadFinished)}
-                                              onDeleteFile={this.handleDeleteFile.bind(this)}
-                                              onClearFiles={this.handleClearFiles.bind(this)}
-                                              onUploadFiles={this.handleFilesUpload.bind(this)} />;
+            filesContainerNode = <EmptyFiles />;
+        }
+
+        var actionAreaNode;
+        if (hasFiles && !this.state.uploadFinished) {
+            actionAreaNode = (
+                <FilesActionArea disabled={this.state.uploading}
+                                 onClearFiles={this.handleClearFiles.bind(this)}
+                                 onUploadFiles={this.handleFilesUpload.bind(this)} />
+            );
         }
 
         var resultNode;
@@ -47,6 +62,7 @@ export default class UploadForm extends React.Component {
         return (
             <div className="upload-form">
                 {filesContainerNode}
+                {actionAreaNode}
                 {resultNode}
                 <AddFilesButton disabled={this.state.uploading}
                                 onFilesAdded={this.handleFilesAdded.bind(this)} />
@@ -57,14 +73,9 @@ export default class UploadForm extends React.Component {
     handleFilesAdded(files) {
         if (this.state.uploadFinished) {
             // reset view
-            this.setState({
-                files: files,
-                uploading: false,
-                uploadFinished: false,
-                downloadUrl: '',
-                expirationDate: '',
-                token: ''
-            });
+            var newState = UploadForm.defaultState;
+            newState.files = files;
+            this.setState(newState);
         }
         else {
             // add files to current queue
