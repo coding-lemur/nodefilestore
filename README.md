@@ -31,3 +31,11 @@ Files can upload and download without registration. Each file will expiring afte
  - download the [cleanup script](https://github.com/MCeddy/nodefilestore-cleanup/blob/master/cleanup.py))
  - change connection string to your MongoDB instance
  - setup an daily job for running the script on your OS
+
+## changelog
+### 1.1.0
+- switched frontend library from AngularJS to React
+- support of multiple files -> will bundled into an ZIP container on downloading
+### 1.0.0
+- support of single file upload and downloading
+- AngularJS frontend
