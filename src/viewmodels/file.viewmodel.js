@@ -13,8 +13,5 @@ export default class FileViewModel {
         this.uploadedPercentage = 0;
         this.isUploading = false;
         this.isUploadFinished = false;
-        this.downloadToken = undefined;
-        this.expirationDate = undefined;
-        this.downloadUrl = undefined;
     }
 }

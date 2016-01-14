@@ -17,7 +17,7 @@ export default class File extends React.Component {
         }
 
         var deleteButtonNode;
-        if (this.props.showDeleteButton && !file.isUploadFinished) {
+        if (this.props.showDeleteButton) {
             deleteButtonNode = (
                 <a className="remove-button" onClick={this.removeFile.bind(this)}>
                     <i className="material-icons">delete</i>
