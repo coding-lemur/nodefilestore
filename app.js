@@ -1,3 +1,5 @@
+const isDeveloping = process.env.NODE_ENV !== 'production';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -16,7 +18,29 @@ app.disable('x-powered-by');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
+if (isDeveloping) {
+    var webpack = require('webpack');
+    var webpackMiddleware = require('webpack-dev-middleware');
+    var webpackHotMiddleware = require('webpack-hot-middleware');
+    var config = require('./webpack.config.js');
+
+    var compiler = webpack(config);
+    var middleware = webpackMiddleware(compiler, {
+        publicPath: config.output.publicPath,
+        stats: {
+            colors: true,
+            hash: false,
+            timings: true,
+            chunks: false,
+            chunkModules: false,
+            modules: false
+        }
+    });
+
+    app.use(middleware);
+    app.use(webpackHotMiddleware(compiler));
+}
+
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());

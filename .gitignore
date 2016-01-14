@@ -28,8 +28,7 @@ node_modules
 
 nodefilestore.iml
 .idea
-/public/app.js
-/public/app.js.map
-/public/stylesheets/style.css
-/.vscode
+.vscode
+/public/app.min.js
+/public/app.min.css
 /public/libs

@@ -1,5 +1,5 @@
 doctype html
-html(ng-app=angularApp)
+html
     head
         title= title
 
@@ -18,7 +18,7 @@ html(ng-app=angularApp)
     body
         include navigation
         .section.no-pad-bot
-            .container
+            #root.container
                 block content
         footer.page-footer.orange
             .container.orange-text.text-lighten-3

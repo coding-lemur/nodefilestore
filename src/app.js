@@ -1,15 +1,8 @@
-//import './styles/style.scss';
+import './styles/style.scss';
 
-import './../public/libs/angular/angular.min.js';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import FilePickerDirective from './filepicker/filePicker.directive';
-import DataService from './data.service';
-import FilesizeFilter from './filesize.filter';
-import UploadController from './controller/upload.controller';
+import UploadForm from './components/upload-form';
 
-angular
-    .module('uploadApp', [])
-    .directive('filePicker', FilePickerDirective)
-    .service('dataService', DataService)
-    .filter('filesize', FilesizeFilter)
-    .controller('uploadController', UploadController);
+ReactDOM.render(<UploadForm/>, document.getElementById('root'));
