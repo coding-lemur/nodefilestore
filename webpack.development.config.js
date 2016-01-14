@@ -20,7 +20,11 @@ module.exports = {
             'process.env.NODE_ENV': JSON.stringify('development')
         }),
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
         new ExtractTextPlugin('[name].min.css')
     ],
     module: {

@@ -1,6 +1,6 @@
 {
   "name": "nodefilestore",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "main": "./bin/www",
   "author": "René Schimmelpfennig",
   "license": "MIT",
@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "node ./bin/www",
-    "build": "webpack --config webpack.config.js --profile --colors",
+    "build": "webpack --config webpack.production.config.js --profile --colors",
     "test": "karma start",
     "test:live": "karma start --auto-watch --no-single-run"
   },
@@ -34,7 +34,8 @@
     "node-uuid": "^1.4.7",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "zip-stream": "^0.8.0"
   },
   "devDependencies": {
     "babel-core": "^6.3.26",
