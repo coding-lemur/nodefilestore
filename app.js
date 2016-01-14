@@ -22,7 +22,7 @@ if (isDeveloping) {
     var webpack = require('webpack');
     var webpackMiddleware = require('webpack-dev-middleware');
     var webpackHotMiddleware = require('webpack-hot-middleware');
-    var config = require('./webpack.config.js');
+    var config = require('./webpack.development.config.js');
 
     var compiler = webpack(config);
     var middleware = webpackMiddleware(compiler, {

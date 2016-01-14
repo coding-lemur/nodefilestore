@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "node ./bin/www",
-    "build": "webpack --config webpack.config.js --profile --colors",
+    "build": "webpack --config webpack.production.config.js --profile --colors",
     "test": "karma start",
     "test:live": "karma start --auto-watch --no-single-run"
   },
