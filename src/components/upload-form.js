@@ -4,8 +4,8 @@ import AddFilesButton from './add-files-button';
 import EmptyFiles from './empty-files';
 import FilesList from './files-list';
 import FilesActionArea from './files-action-area';
+import ResultContainer from './result-container';
 import DataService from '../helper/data-service';
-import dateFormat from 'dateformat';
 
 export default class UploadForm extends React.Component {
     static get defaultState() {
@@ -13,9 +13,11 @@ export default class UploadForm extends React.Component {
             files: [],
             uploading: false,
             uploadFinished: false,
-            downloadUrl: '',
-            expirationDate: '',
-            token: ''
+            apiResult: {
+                downloadUrl: '',
+                expirationDate: '',
+                token: ''
+            }
         }
     }
 
@@ -26,44 +28,39 @@ export default class UploadForm extends React.Component {
     }
 
     render() {
-        var hasFiles = (this.state.files.length > 0);
+        var filesNode;
+        var resultContainerNode;
+        var filesActionAreaNode;
 
-        var filesContainerNode;
-        if (hasFiles) {
-            filesContainerNode = (
+        if (this.state.files.length > 0) { // has files
+            filesNode = (
                 <FilesList files={this.state.files}
                            showDeleteButtons={!(this.state.uploading || this.state.uploadFinished)}
                            onDeleteFile={this.handleDeleteFile.bind(this)} />
             );
-        }
-        else {
-            filesContainerNode = <EmptyFiles />;
-        }
 
-        var actionAreaNode;
-        if (hasFiles && !this.state.uploadFinished) {
-            actionAreaNode = (
-                <FilesActionArea disabled={this.state.uploading}
-                                 onClearFiles={this.handleClearFiles.bind(this)}
-                                 onUploadFiles={this.handleFilesUpload.bind(this)} />
-            );
+            if (this.state.uploadFinished) {
+                resultContainerNode = (
+                    <ResultContainer apiResult={this.state.apiResult} />
+                );
+            }
+            else { // upload not finished
+                filesActionAreaNode = (
+                    <FilesActionArea disabled={this.state.uploading}
+                                     onClearFiles={this.handleClearFiles.bind(this)}
+                                     onUploadFiles={this.handleFilesUpload.bind(this)} />
+                );
+            }
         }
-
-        var resultNode;
-        if (this.state.uploadFinished) {
-            resultNode = (
-                <div className="result-container">
-                    <p>download-url: <a href={this.state.downloadUrl}>{this.state.downloadUrl}</a></p>
-                    <p className="download-expires">expires on {dateFormat(this.state.expirationDate)}</p>
-                </div>
-            );
+        else { // hasn't files
+            filesNode = <EmptyFiles />;
         }
 
         return (
             <div className="upload-form">
-                {filesContainerNode}
-                {actionAreaNode}
-                {resultNode}
+                {filesNode}
+                {resultContainerNode}
+                {filesActionAreaNode}
                 <AddFilesButton disabled={this.state.uploading}
                                 onFilesAdded={this.handleFilesAdded.bind(this)} />
             </div>
@@ -91,21 +88,25 @@ export default class UploadForm extends React.Component {
 
             this.setState({ files: newFiles });
         };
+
+        this.setState({ uploading: true });
+
         dataService.uploadFiles(this.state.files, notify)
             .then((response) => { // upload finished
                 this.setState({
                     uploading: false,
                     uploadFinished: true,
-                    downloadUrl: response.downloadUrl,
-                    expirationDate: response.expirationDate,
-                    token: response.token
+                    apiResult: {
+                        downloadUrl: response.downloadUrl,
+                        expirationDate: response.expirationDate,
+                        token: response.token
+                    }
                 });
             },
             (error) => {
                 console.error(error);
                 this.setState({ uploading: false });
             });
-        this.setState({ uploading: true });
     }
 
     handleClearFiles() {
