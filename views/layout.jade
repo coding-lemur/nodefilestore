@@ -23,9 +23,10 @@ html
         footer.page-footer.orange
             .container.orange-text.text-lighten-3
                 | version #{version}&nbsp;
-                a.orange-text.text-lighten-5.right-align(href='https://github.com/MCeddy/nodefilestore', target='_blank') get code on Github
+                iframe(src='https://ghbtns.com/github-btn.html?user=MCeddy&repo=nodefilestore&type=star&count=true', frameborder='0', scrolling='0', width='80px', height='20px')
+                iframe(src='https://ghbtns.com/github-btn.html?user=MCeddy&repo=nodefilestore&type=fork&count=true', frameborder='0', scrolling='0', width='170px', height='20px')
             .footer-copyright
                 .container
-                    made by&nbsp;
-                    a.orange-text.text-lighten-4(href='http://www.coding-lemur.de', target='_blank') coding lemur 2015
+                    | &copy; 2015 - #{new Date().getFullYear()} by&nbsp;
+                    a.orange-text.text-lighten-4(href='http://www.coding-lemur.de', target='_blank') coding lemur
         block footer
