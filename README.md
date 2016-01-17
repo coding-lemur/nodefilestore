@@ -3,15 +3,15 @@
 ## description
 This is a very lightweight filesharing service base on nodejs and mongodb/GridFS.
 For the frontend we using react and ES6.
-Files can upload and download without registration. Each file will expiring after 7 days and will totally removed from the databse by an nightly task (see [nodefilestore-cleanup](https://github.com/MCeddy/nodefilestore-cleanup) repo).
+Files can upload and download without registration. Each file will expiring after 7 days and will totally removed from the database by an nightly task.
 
 ## features
 - cross-platform (nodejs)
 - modern frontend (react and ES6)
 - streaming files into mongoDB (GridFS)
 - anonymous uploading
-- auto cleanup of expired files (see [nodefilestore-cleanup](https://github.com/MCeddy/nodefilestore-cleanup) repo)
-- open source
+- auto cleanup of expired files
+- open source (MIT)
 
 ## setup
 - first make sure you have an mongodb instance running and enough free space for uploaded files
@@ -28,7 +28,7 @@ Files can upload and download without registration. Each file will expiring afte
 - open "http://localhost:3000" in your browser
 - optionally:
  - install Python (>= 3.0)
- - download the [cleanup script](https://github.com/MCeddy/nodefilestore-cleanup/blob/master/cleanup.py))
+ - open "/clean-up/cleanup.py" in editor
  - change connection string to your MongoDB instance
  - setup an daily job for running the script on your OS
 
