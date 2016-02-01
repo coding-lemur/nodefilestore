@@ -40,3 +40,8 @@ Files can upload and download without registration. Each file will expiring afte
 ### 1.0.0
 - support of single file upload and downloading
 - AngularJS frontend
+
+## TODO
+- [ ] write tests
+- [ ] instant uploads
+- [ ] notify uploader after download
