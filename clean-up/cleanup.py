@@ -30,7 +30,7 @@ for upload in uploads:
 if len(expiredFileIDs) == 0:
     print("no expired uploads")
 else:
-    print("%s expired uploads" % len(expiredFileIDs))
+    print("%s expired uploads" % len(expiredUploadIDs))
 
     # delete expired uploads (metadata)
     result = db.uploads.delete_many({"_id": {"$in": expiredUploadIDs}})
@@ -40,7 +40,7 @@ else:
     else:
         print("deleted %s uploads" % result.deleted_count)
 
-    # remove expired files (from GridFS)
+    # remove files (from GridFS)
     fs = gridfs.GridFS(db)
 
     totalFilesDeleted = 0
