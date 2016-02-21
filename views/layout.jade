@@ -20,13 +20,13 @@ html
         .section.no-pad-bot
             #root.container
                 block content
-        footer.page-footer.orange
-            .container.orange-text.text-lighten-3
-                | version #{version}&nbsp;
+        footer.page-footer.grey.lighten-4
+            .container
+                | nodefilestore #{version}&nbsp;
                 iframe(src='https://ghbtns.com/github-btn.html?user=MCeddy&repo=nodefilestore&type=star&count=true', frameborder='0', scrolling='0', width='80px', height='20px')
                 iframe(src='https://ghbtns.com/github-btn.html?user=MCeddy&repo=nodefilestore&type=fork&count=true', frameborder='0', scrolling='0', width='170px', height='20px')
             .footer-copyright
                 .container
                     | &copy; 2015 - #{new Date().getFullYear()} by&nbsp;
-                    a.orange-text.text-lighten-4(href='http://www.coding-lemur.de', target='_blank') coding lemur
+                    a(href='http://www.coding-lemur.de', target='_blank') coding lemur
         block footer

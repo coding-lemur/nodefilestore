@@ -13,10 +13,19 @@ body > .section {
     height: 100%;
 }
 
-footer {
+footer.page-footer {
     position: absolute;
     left: 0;
     bottom: 0;
     height: 92px;
     width: 100%;
+}
+
+footer.page-footer .footer-copyright {
+    color: black;
+}
+
+footer.page-footer .footer-copyright a {
+    color: black;
+    font-weight: 400;
 }
