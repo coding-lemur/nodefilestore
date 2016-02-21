@@ -1,6 +1,5 @@
 import React from 'react';
-
-import dateFormat from 'dateformat';
+import moment from 'moment';
 
 export default class ResultContainer extends React.Component {
     constructor(props) {
@@ -13,7 +12,7 @@ export default class ResultContainer extends React.Component {
         return (
             <div className="result-container">
                 <p>download-url: <a href={apiResult.downloadUrl}>{apiResult.downloadUrl}</a></p>
-                <p className="download-expires">expires on {dateFormat(apiResult.expirationDate)}</p>
+                <p className="download-expires">expires on {moment(apiResult.expirationDate).format('LLL')}</p>
             </div>
         );
     }
