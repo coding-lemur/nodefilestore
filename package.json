@@ -27,8 +27,8 @@
     "gridfs-storage-engine": "^0.2.3",
     "gridfs-stream": "^1.1.1",
     "jade": "~1.11.0",
-    "moment": "^2.11.1",
-    "mongodb": "^2.1.4",
+    "moment": "^2.11.2",
+    "mongodb": "^2.1.7",
     "morgan": "~1.7.0",
     "multer": "^1.1.0",
     "node-uuid": "^1.4.7",
@@ -38,18 +38,18 @@
     "zip-stream": "^0.8.0"
   },
   "devDependencies": {
-    "babel-core": "^6.4.5",
-    "babel-loader": "^6.2.1",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "babel-runtime": "^6.3.19",
+    "babel-core": "^6.5.2",
+    "babel-loader": "^6.2.3",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-runtime": "^6.5.0",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "node-sass": "^3.4.2",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.12",
+    "webpack": "^1.12.13",
     "webpack-dev-middleware": "^1.5.1",
-    "webpack-hot-middleware": "^2.6.4"
+    "webpack-hot-middleware": "^2.7.1"
   }
 }
