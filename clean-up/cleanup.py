@@ -40,7 +40,6 @@ else:
         result = fs.delete(fileID)
         totalFilesDeleted += 1
 
-
 # remove orphaned files
 orphanedFiles = fs.find({"_id": {"$nin": usedFileIDs}})
 
