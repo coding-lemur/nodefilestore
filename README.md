@@ -48,5 +48,6 @@ Files can upload and download without registration. Each file will expiring afte
 
 ## TODO
 - [ ] write tests
+- [ ] drag & drop
 - [ ] instant uploads
 - [ ] notify uploader after download
