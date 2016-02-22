@@ -33,6 +33,10 @@ Files can upload and download without registration. Each file will expiring afte
  - setup an daily job for running the script on your OS
 
 ## changelog
+### 1.1.1
+- fixed missing DateFormat library (used momentjs instead)
+- updated npm and bower dependencies
+- some style changes
 ### 1.1.0
 - switched frontend library from AngularJS to React
 - support of multiple files -> will bundled into an ZIP container on downloading
