@@ -2,13 +2,14 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import expect from 'expect';
 import expectJSX from 'expect-jsx';
-expect.extend(expectJSX);
 
 import File from '../file';
 import Progress from '../progress';
 import FileViewModel from '../../viewmodels/file.viewmodel';
 
 const noRefCheck = () => {};
+
+expect.extend(expectJSX);
 
 describe('file component', () => {
     it('should render file', () => {
