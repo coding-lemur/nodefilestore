@@ -14,8 +14,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "build": "webpack --config webpack.production.config.js --profile --colors",
-    "test": "karma start",
-    "test:live": "karma start --auto-watch --no-single-run"
+    "test": "mocha \"./src/**/*.test.js\" --compilers js:babel-core/register"
   },
   "dependencies": {
     "body-parser": "~1.15.0",
@@ -44,8 +43,12 @@
     "babel-preset-react": "^6.5.0",
     "babel-runtime": "^6.5.0",
     "css-loader": "^0.23.1",
+    "expect": "^1.14.0",
+    "expect-jsx": "^2.3.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "mocha": "^2.4.5",
     "node-sass": "^3.4.2",
+    "react-addons-test-utils": "^0.14.7",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13",
