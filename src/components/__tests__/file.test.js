@@ -8,6 +8,8 @@ import File from '../file';
 import Progress from '../progress';
 import FileViewModel from '../../viewmodels/file.viewmodel';
 
+const noRefCheck = () => {};
+
 describe('file component', () => {
     it('should render file', () => {
         const file = new FileViewModel();
@@ -17,7 +19,7 @@ describe('file component', () => {
         file.date = new Date();
 
         const renderer = TestUtils.createRenderer();
-        renderer.render(<File file={file} />);
+        renderer.render(<File file={file} onDeleteFile={noRefCheck} />);
 
         const actualElement = renderer.getRenderOutput();
         const expectedElement = (<li className="collection-item file">
@@ -35,12 +37,10 @@ describe('file component', () => {
         file.date = new Date();
 
         const renderer = TestUtils.createRenderer();
-        renderer.render(<File file={file} showDeleteButton="true" />);
+        renderer.render(<File file={file} showDeleteButton onDeleteFile={noRefCheck} />);
 
-        const noRefCheck = () => {};
-
-        let actualElement = renderer.getRenderOutput();
-        let expectedElement = (<li className="collection-item file">
+        const actualElement = renderer.getRenderOutput();
+        const expectedElement = (<li className="collection-item file">
             <div className="file-name">test.jpg</div>
             <div className="file-size">1.00 Kb</div>
             <a className="remove-button" onClick={noRefCheck}>
@@ -60,10 +60,10 @@ describe('file component', () => {
         file.uploadedPercentage = 17;
 
         const renderer = TestUtils.createRenderer();
-        renderer.render(<File file={file} />);
+        renderer.render(<File file={file} onDeleteFile={noRefCheck} />);
 
-        let actualElement = renderer.getRenderOutput();
-        let expectedElement = (<li className="collection-item file">
+        const actualElement = renderer.getRenderOutput();
+        const expectedElement = (<li className="collection-item file">
             <div className="file-name">test.jpg</div>
             <div className="file-size">1.00 Kb</div>
             <Progress value={17} />
