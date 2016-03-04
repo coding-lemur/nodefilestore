@@ -7,7 +7,7 @@ export default class Button extends React.Component {
     }
 
     render() {
-        var btnClasses = classnames('waves-effect', 'waves-light', 'btn', {
+        const btnClasses = classnames('waves-effect', 'waves-light', 'btn', {
             'disabled': this.props.disabled
         });
 
@@ -26,3 +26,9 @@ export default class Button extends React.Component {
         this.props.onClick();
     }
 }
+
+Button.propTypes = {
+    disabled: React.PropTypes.bool,
+    onClick: React.PropTypes.func.isRequired,
+    children: React.PropTypes.element.isRequired
+};

@@ -19,8 +19,8 @@ describe('file component', () => {
         const renderer = TestUtils.createRenderer();
         renderer.render(<File file={file} />);
 
-        let actualElement = renderer.getRenderOutput();
-        let expectedElement = (<li className="collection-item file">
+        const actualElement = renderer.getRenderOutput();
+        const expectedElement = (<li className="collection-item file">
             <div className="file-name">test.jpg</div>
             <div className="file-size">1.00 Kb</div>
         </li>);

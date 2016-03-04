@@ -13,3 +13,7 @@ export default class Progress extends React.Component {
         );
     }
 }
+
+Progress.propTypes = {
+    value: React.PropTypes.number.isRequired
+};

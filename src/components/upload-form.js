@@ -18,7 +18,7 @@ export default class UploadForm extends React.Component {
                 expirationDate: '',
                 token: ''
             }
-        }
+        };
     }
 
     constructor(props) {
@@ -28,9 +28,9 @@ export default class UploadForm extends React.Component {
     }
 
     render() {
-        var filesNode;
-        var resultContainerNode;
-        var filesActionAreaNode;
+        let filesNode;
+        let resultContainerNode;
+        let filesActionAreaNode;
 
         if (this.state.files.length > 0) { // has files
             filesNode = (
@@ -70,7 +70,7 @@ export default class UploadForm extends React.Component {
     handleFilesAdded(files) {
         if (this.state.uploadFinished) {
             // reset view
-            var newState = UploadForm.defaultState;
+            const newState = UploadForm.defaultState;
             newState.files = files;
             this.setState(newState);
         }
@@ -81,9 +81,9 @@ export default class UploadForm extends React.Component {
     }
 
     handleFilesUpload() {
-        var dataService = new DataService();
-        var notify = (file, fileIndex) => {
-            var newFiles = this.state.files;
+        const dataService = new DataService();
+        const notify = (file, fileIndex) => {
+            const newFiles = this.state.files;
             newFiles[fileIndex] = file;
 
             this.setState({ files: newFiles });
@@ -118,8 +118,8 @@ export default class UploadForm extends React.Component {
             return;
         }
 
-        var files = this.state.files;
-        var index = files.indexOf(file);
+        const files = this.state.files;
+        const index = files.indexOf(file);
 
         if (index > -1) {
             files.splice(index, 1);

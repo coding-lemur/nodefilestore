@@ -1,10 +1,10 @@
 export default class DataService {
     uploadFiles(files, notifyCallback) {
         return new Promise((resolve, reject) => {
-            var xhr = new XMLHttpRequest();
-            var fileIndex = 0;
-            var currentFile = files[fileIndex];
-            var loadedPreviousFiles = 0;
+            const xhr = new XMLHttpRequest();
+            let fileIndex = 0;
+            let currentFile = files[fileIndex];
+            let loadedPreviousFiles = 0;
 
             xhr.upload.addEventListener('progress', e => {
                 if (!e.lengthComputable) {
@@ -14,8 +14,8 @@ export default class DataService {
                 currentFile.isUploading = true;
 
                 // calculate percentage for each file
-                var currentFileLoaded = e.loaded - loadedPreviousFiles;
-                var currentFileTotal = currentFile.size;
+                const currentFileLoaded = e.loaded - loadedPreviousFiles;
+                const currentFileTotal = currentFile.size;
 
                 if (currentFileLoaded >= currentFileTotal) { // upload for current is finished
                     currentFile.isUploading = false;
@@ -36,7 +36,7 @@ export default class DataService {
                 notifyCallback(currentFile, fileIndex);
             });
 
-            xhr.upload.addEventListener('load', e => { // upload finished
+            xhr.upload.addEventListener('load', () => { // upload finished
                 // do nothing
             });
 
@@ -50,11 +50,11 @@ export default class DataService {
                 reject(e);
             });
 
-            xhr.upload.addEventListener('abort', e => {
+            xhr.upload.addEventListener('abort', () => {
                 reject('upload aborted');
             });
 
-            var formData = new FormData();
+            const formData = new FormData();
 
             files.forEach((file) => {
                 formData.append('files', file.originalFile);

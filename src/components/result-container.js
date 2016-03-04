@@ -7,7 +7,7 @@ export default class ResultContainer extends React.Component {
     }
 
     render() {
-        var {apiResult} = this.props;
+        const {apiResult} = this.props;
 
         return (
             <div className="result-container">
@@ -17,3 +17,10 @@ export default class ResultContainer extends React.Component {
         );
     }
 }
+
+ResultContainer.propTypes = {
+    apiResult: React.PropTypes.shape({
+        downloadUrl: React.PropTypes.string.isRequired,
+        expirationDate: React.PropTypes.object.isRequired
+    }).isRequired
+};

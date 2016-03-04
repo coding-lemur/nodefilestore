@@ -9,7 +9,7 @@ export default class AddFilesButton extends React.Component {
     }
 
     render() {
-        var btnClasses = classnames('btn-floating', 'btn-large', 'red', {
+        const btnClasses = classnames('btn-floating', 'btn-large', 'red', {
             'disabled': this.props.disabled
         });
 
@@ -22,7 +22,7 @@ export default class AddFilesButton extends React.Component {
                        ref={(ref) => this.filePicker = ref}
                        onChange={this.filesSelected.bind(this)} />
             </div>
-        )
+        );
     }
 
     handleButtonClick(e) {
@@ -34,14 +34,14 @@ export default class AddFilesButton extends React.Component {
 
         // open file-picker
         this.filePicker.click();
-    };
+    }
 
     filesSelected(e) {
-        var files = this.filePicker.files;
-        var fileViewModels = [];
+        const files = this.filePicker.files;
+        const fileViewModels = [];
 
         // transform to viewmodels
-        for (var i = 0; i < files.length; i++) {
+        for (let i = 0; i < files.length; i++) {
             fileViewModels.push(new FileViewModel(files[i]));
         }
 
@@ -49,5 +49,5 @@ export default class AddFilesButton extends React.Component {
 
         // reset
         e.target.value = '';
-    };
+    }
 }

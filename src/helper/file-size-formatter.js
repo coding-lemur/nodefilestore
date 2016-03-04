@@ -1,28 +1,35 @@
 export default class FileSizeFormatter {
     static humanize(bytes) {
-        if (isNaN(bytes))
-            bytes = 0;
+        if (isNaN(bytes)) {
+            return '0 Bytes';
+        }
 
-        if (bytes < 1024)
-            return bytes + ' Bytes';
+        let resultBytes = bytes;
 
-        bytes /= 1024;
+        if (resultBytes < 1024) {
+            return resultBytes + ' Bytes';
+        }
 
-        if (bytes < 1024)
-            return bytes.toFixed(2) + ' Kb';
+        resultBytes /= 1024;
 
-        bytes /= 1024;
+        if (resultBytes < 1024) {
+            return resultBytes.toFixed(2) + ' Kb';
+        }
 
-        if (bytes < 1024)
-            return bytes.toFixed(2) + ' Mb';
+        resultBytes /= 1024;
 
-        bytes /= 1024;
+        if (resultBytes < 1024) {
+            return resultBytes.toFixed(2) + ' Mb';
+        }
 
-        if (bytes < 1024)
-            return bytes.toFixed(2) + ' Gb';
+        resultBytes /= 1024;
 
-        bytes /= 1024;
+        if (resultBytes < 1024) {
+            return resultBytes.toFixed(2) + ' Gb';
+        }
 
-        return bytes.toFixed(2) + ' Tb';
+        resultBytes /= 1024;
+
+        return resultBytes.toFixed(2) + ' Tb';
     }
 }

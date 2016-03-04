@@ -16,3 +16,9 @@ export default class FilesActionArea extends React.Component {
         );
     }
 }
+
+FilesActionArea.propTypes = {
+    disabled: React.PropTypes.bool,
+    onClearFiles: React.PropTypes.func.isRequired,
+    onUploadFiles: React.PropTypes.func.isRequired
+};

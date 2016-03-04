@@ -2,6 +2,7 @@ import React from 'react';
 
 import Progress from './progress';
 import FileSizeFormatter from '../helper/file-size-formatter';
+import FileViewModel from '../viewmodels/file.viewmodel';
 
 export default class File extends React.Component {
     constructor(props) {
@@ -9,14 +10,14 @@ export default class File extends React.Component {
     }
 
     render() {
-        var {file} = this.props;
+        const {file} = this.props;
 
-        var progressNode;
+        let progressNode;
         if (file.isUploading) {
             progressNode = <Progress value={file.uploadedPercentage} />;
         }
 
-        var deleteButtonNode;
+        let deleteButtonNode;
         if (this.props.showDeleteButton) {
             deleteButtonNode = (
                 <a className="remove-button" onClick={this.removeFile.bind(this)}>
@@ -39,3 +40,9 @@ export default class File extends React.Component {
         this.props.onDeleteFile(this.props.file);
     }
 }
+
+File.propTypes = {
+    file: React.PropTypes.instanceOf(FileViewModel).isRequired,
+    showDeleteButton: React.PropTypes.bool,
+    onDeleteFile: React.PropTypes.func.isRequired
+};
