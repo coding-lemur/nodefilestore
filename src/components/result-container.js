@@ -21,6 +21,6 @@ export default class ResultContainer extends React.Component {
 ResultContainer.propTypes = {
     apiResult: React.PropTypes.shape({
         downloadUrl: React.PropTypes.string.isRequired,
-        expirationDate: React.PropTypes.object.isRequired
+        expirationDate: React.PropTypes.string.isRequired
     }).isRequired
 };
