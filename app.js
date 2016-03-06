@@ -1,17 +1,18 @@
 const isDeveloping = process.env.NODE_ENV !== 'production';
 
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var packageJson = require('./package.json');
+import express from 'express';
+import path from 'path';
+import favicon from 'serve-favicon';
+import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import packageJson from './package.json';
 
-var indexRoutes = require('./routes/index');
-var apiRoutes = require('./routes/api');
+import indexRoutes from './routes/index';
+import apiRoutes from './routes/api';
 
-var app = express();
+const app = express();
+
 app.disable('x-powered-by');
 
 // view engine setup
@@ -19,13 +20,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 if (isDeveloping) {
-    var webpack = require('webpack');
-    var webpackMiddleware = require('webpack-dev-middleware');
-    var webpackHotMiddleware = require('webpack-hot-middleware');
-    var config = require('./webpack.development.config.js');
+    const webpack = require('webpack');
+    const webpackMiddleware = require('webpack-dev-middleware');
+    const webpackHotMiddleware = require('webpack-hot-middleware');
+    const config = require('./webpack.development.config.js');
 
-    var compiler = webpack(config);
-    var middleware = webpackMiddleware(compiler, {
+    const compiler = webpack(config);
+    const middleware = webpackMiddleware(compiler, {
         publicPath: config.output.publicPath,
         stats: {
             colors: true,
@@ -49,7 +50,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // make special data accessible to all views
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
     res.locals.version = packageJson.version;
     next();
 });
@@ -58,8 +59,8 @@ app.use('/', indexRoutes);
 app.use('/api', apiRoutes);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
+app.use((req, res, next) => {
+    const err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
@@ -69,7 +70,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
+    app.use((err, req, res) => {
         res.status(err.status || 500);
 
         if (res.statusCode === 404) {
@@ -89,7 +90,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use((err, req, res) => {
     res.status(err.status || 500);
 
     if (res.statusCode === 404) {
@@ -106,4 +107,4 @@ app.use(function(err, req, res, next) {
     }
 });
 
-module.exports = app;
+export default app;

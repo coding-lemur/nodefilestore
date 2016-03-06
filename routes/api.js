@@ -1,17 +1,20 @@
-var express = require('express');
-var router = express.Router();
-var config = require('config');
-var multer = require('multer');
-var gridfsStorage = require('gridfs-storage-engine')({ url: config.database.connection });
-var upload = multer({ storage: gridfsStorage });
-var mongo = require('mongodb');
-var database = undefined;
-var httpError = require('../helper/httpError');
-var uuid = require('node-uuid');
-var moment = require('moment');
+import express from 'express';
+import config from 'config';
+import multer from 'multer';
+import gridfsStorageEngine from 'gridfs-storage-engine';
+import mongo from 'mongodb';
+import httpError from '../helper/httpError';
+import uuid from 'node-uuid';
+import moment from 'moment';
+
+const router = express.Router();
+const gridfsStorage = gridfsStorageEngine({ url: config.database.connection });
+const uploadStorage = multer({ storage: gridfsStorage });
+
+let database = undefined;
 
 // connect to MongoDB
-mongo.MongoClient.connect(config.database.connection, function(err, db) {
+mongo.MongoClient.connect(config.database.connection, (err, db) => {
     if (err) {
         throw err;
     }
@@ -19,17 +22,34 @@ mongo.MongoClient.connect(config.database.connection, function(err, db) {
     database = db;
 });
 
-router.post('/upload', upload.array('files'), function(req, res, next) {
-    var fileIds = req.files.map(function(file) {
+function insertUpload(fileIds, callback) {
+    const currentDate = new Date();
+    const expirationDate = moment(currentDate).add(7, 'days').toDate();
+    const upload = {
+        token: uuid.v4(),
+        files: fileIds,
+        createDate: currentDate,
+        expirationDate: expirationDate
+    };
+
+    database
+        .collection('uploads')
+        .insertOne(upload, (err, result) => {
+            callback(err, result, upload);
+        });
+}
+
+router.post('/upload', uploadStorage.array('files'), (req, res, next) => {
+    const fileIds = req.files.map((file) => {
         return file.gridfsEntry._id;
     });
 
-    insertUpload(fileIds, function(err, result, upload) {
+    insertUpload(fileIds, (err, result, upload) => {
         if (err) {
             return next(httpError.createError(500, err));
         }
 
-        res.status(201).json({
+        return res.status(201).json({
             token: upload.token,
             expirationDate: upload.expirationDate,
             downloadUrl: config.baseUrl + '/download/' + upload.token
@@ -37,24 +57,8 @@ router.post('/upload', upload.array('files'), function(req, res, next) {
     });
 });
 
-router.get('/download/:token', function(req, res) {
+router.get('/download/:token', (req, res) => {
     res.redirect(301, '/download/' + req.params.token);
 });
 
-function insertUpload(fileIds, callback) {
-    var currentDate = new Date();
-    var upload = {
-        token: uuid.v4(),
-        files: fileIds,
-        createDate: currentDate,
-        expirationDate: moment(currentDate).add(7, 'days').toDate()
-    };
-
-    database
-        .collection('uploads')
-        .insertOne(upload, function(err, result) {
-            callback(err, result, upload)
-        });
-}
-
-module.exports = router;
+export default router;

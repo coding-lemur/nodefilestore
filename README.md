@@ -7,7 +7,8 @@ Files can upload and download without registration. Each file will expiring afte
 
 ## features
 - cross-platform (nodejs)
-- modern frontend (react and ES6)
+- modern frontend (react with ES6)
+- completely ES6 (backend and frondend)
 - streaming files into mongoDB (GridFS)
 - anonymous uploading
 - auto cleanup of expired files

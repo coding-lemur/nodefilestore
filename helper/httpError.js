@@ -1,49 +1,38 @@
-var httpError = {
-    /***
+export default class httpError {
+    /**
      * Create a error for handle in global error handler.
      * @param {number} statusCode - Http status code
-     * @param {string} [message] - error message
-     * @param {object} [error] - error
-     * @return {Error}
+     * @param {(string | object)} [error] - error-message or error-object
+     * @return {Error} error-object with status-code
      */
-    createError: function(statusCode) {
-        var message = undefined;
-        var error = undefined;
+    static createError(statusCode, error) {
+        let result;
 
-        if (arguments.length > 1) {
-            // optional parameters: "message" and "error"
-            for(var i = 1; i < arguments.length; i++) {
-                var arg = arguments[i];
+        if (!error) {
+            let message;
 
-                if (typeof arg == 'string') { // message
-                    message = arguments[i];
-                }
-                else if (typeof arg == 'object') { // error
-                    error = arguments[i];
-                }
-            }
-        }
-
-        if (!message) {
-            switch(statusCode) {
+            switch (statusCode) {
                 case 404:
                     message = 'Not Found';
                     break;
                 case 500:
                     message = 'Internal Server Error';
                     break;
+                default:
+                    message = 'Unkown error';
             }
+
+            result = new Error(message);
+        }
+        else if (typeof error === 'string') {
+            result = new Error(error);
+        }
+        else {
+            result = error;
         }
 
-        if ((statusCode == 500) && error) { // internal server error
-            // TODO log error
-        }
+        result.status = statusCode;
 
-        error = new Error(message);
-        error.status = statusCode;
-
-        return error;
+        return result;
     }
-};
-
-module.exports = httpError;
+}
