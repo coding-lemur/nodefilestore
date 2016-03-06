@@ -1,6 +1,6 @@
 import expect from 'expect';
 
-import FileSizeFormatter from '../file-size-formatter'
+import FileSizeFormatter from '../file-size-formatter';
 
 describe('FileSizeFormater', () => {
     it('should handle missing input', () => {

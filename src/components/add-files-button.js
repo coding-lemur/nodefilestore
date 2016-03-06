@@ -19,7 +19,7 @@ export default class AddFilesButton extends React.Component {
                     <i className="large material-icons">add</i>
                 </a>
                 <input type="file" multiple style={{display: 'none'}}
-                       ref={(ref) => this.filePicker = ref}
+                       ref={(ref) => { this.filePicker = ref; }}
                        onChange={this.filesSelected.bind(this)} />
             </div>
         );
@@ -51,3 +51,8 @@ export default class AddFilesButton extends React.Component {
         e.target.value = '';
     }
 }
+
+AddFilesButton.propTypes = {
+    disabled: React.PropTypes.bool,
+    onFilesAdded: React.PropTypes.func.isRequired
+};
