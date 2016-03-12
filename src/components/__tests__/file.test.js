@@ -1,74 +1,122 @@
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
-import expect from 'expect';
-import expectJSX from 'expect-jsx';
+import chai from 'chai';
+import { shallow } from 'enzyme';
+import sinon from 'sinon';
 
 import File from '../file';
 import Progress from '../progress';
 import FileViewModel from '../../viewmodels/file.viewmodel';
 
-const noRefCheck = () => {};
-
-expect.extend(expectJSX);
+chai.should();
 
 describe('file component', () => {
-    it('should render file', () => {
-        const file = new FileViewModel();
-        file.name = 'test.jpg';
-        file.size = 1024;
-        file.mimeType = 'image/jpeg';
-        file.date = new Date();
+    describe('with normal file and without delete-button', () => {
+        const noRefCheck = () => {};
 
-        const renderer = TestUtils.createRenderer();
-        renderer.render(<File file={file} onDeleteFile={noRefCheck} />);
+        let file;
+        let component;
 
-        const actualElement = renderer.getRenderOutput();
-        const expectedElement = (<li className="collection-item file">
-            <div className="file-name">test.jpg</div>
-            <div className="file-size">1.00 Kb</div>
-        </li>);
-        expect(actualElement).toEqualJSX(expectedElement);
+        beforeEach(() => {
+            file = new FileViewModel();
+            file.name = 'test.jpg';
+            file.size = 1024;
+            file.mimeType = 'image/jpeg';
+            file.date = new Date();
+
+            component = shallow(<File file={file} onDeleteFile={noRefCheck} />);
+        });
+
+        it('should have base CSS classes', () => {
+            component.is('li.collection-item.file').should.equal(true);
+        });
+
+        it('should show file name and size', () => {
+            component.find('.file-name').text().should.equal('test.jpg');
+            component.find('.file-size').text().should.equal('1.00 Kb');
+        });
+
+        it('shouldn\'t show delete button', () => {
+            component.find('.remove-button').length.should.equal(0);
+        });
+
+        it('shouldn\'t show progressbar', () => {
+            component.contains(<Progress value={file.uploadedPercentage} />).should.equal(false);
+        });
     });
 
-    it('should render file and delete button', () => {
-        const file = new FileViewModel();
-        file.name = 'test.jpg';
-        file.size = 1024;
-        file.mimeType = 'image/jpeg';
-        file.date = new Date();
+    describe('with normal file and delete button', () => {
+        let file;
+        let component;
+        let onDeleteButtonClick;
 
-        const renderer = TestUtils.createRenderer();
-        renderer.render(<File file={file} showDeleteButton onDeleteFile={noRefCheck} />);
+        beforeEach(() => {
+            file = new FileViewModel();
+            file.name = 'test.jpg';
+            file.size = 1024;
+            file.mimeType = 'image/jpeg';
+            file.date = new Date();
 
-        const actualElement = renderer.getRenderOutput();
-        const expectedElement = (<li className="collection-item file">
-            <div className="file-name">test.jpg</div>
-            <div className="file-size">1.00 Kb</div>
-            <a className="remove-button" onClick={noRefCheck}>
-                <i className="material-icons">delete</i>
-            </a>
-        </li>);
-        expect(actualElement).toEqualJSX(expectedElement);
+            onDeleteButtonClick = sinon.spy();
+
+            component = shallow(<File file={file} showDeleteButton onDeleteFile={onDeleteButtonClick} />);
+        });
+
+        it('should have base CSS classes', () => {
+            component.is('li.collection-item.file').should.equal(true);
+        });
+
+        it('should show file name and size', () => {
+            component.find('.file-name').text().should.equal('test.jpg');
+            component.find('.file-size').text().should.equal('1.00 Kb');
+        });
+
+        it('should show delete button', () => {
+            component.find('.remove-button').length.should.equal(1);
+        });
+
+        it('shouldn\'t show progressbar', () => {
+            component.contains(<Progress value={file.uploadedPercentage} />).should.equal(false);
+        });
+
+        it('should handle delete-button click event', () => {
+            component.find('.remove-button').simulate('click');
+            onDeleteButtonClick.calledWith(file).should.equal(true);
+        });
     });
 
-    it('should render file with progress bar while uploading', () => {
-        const file = new FileViewModel();
-        file.name = 'test.jpg';
-        file.size = 1024;
-        file.mimeType = 'image/jpeg';
-        file.date = new Date();
-        file.isUploading = true;
-        file.uploadedPercentage = 17;
+    describe('with uploading file and delete button', () => {
+        let file;
+        let component;
 
-        const renderer = TestUtils.createRenderer();
-        renderer.render(<File file={file} onDeleteFile={noRefCheck} />);
+        const noRefCheck = () => {};
 
-        const actualElement = renderer.getRenderOutput();
-        const expectedElement = (<li className="collection-item file">
-            <div className="file-name">test.jpg</div>
-            <div className="file-size">1.00 Kb</div>
-            <Progress value={17} />
-        </li>);
-        expect(actualElement).toEqualJSX(expectedElement);
+        beforeEach(() => {
+            file = new FileViewModel();
+            file.name = 'test.jpg';
+            file.size = 1024;
+            file.mimeType = 'image/jpeg';
+            file.date = new Date();
+            file.isUploading = true;
+            file.uploadedPercentage = 17;
+
+            component = shallow(<File file={file} showDeleteButton onDeleteFile={noRefCheck} />);
+        });
+
+        it('should have base CSS classes', () => {
+            component.is('li.collection-item.file').should.equal(true);
+        });
+
+        it('should show file name and size', () => {
+            component.find('.file-name').text().should.equal('test.jpg');
+            component.find('.file-size').text().should.equal('1.00 Kb');
+        });
+
+        it('should show delete button', () => {
+            component.find('.remove-button').length.should.equal(1);
+        });
+
+        it('should show progressbar with value', () => {
+            component.contains(<Progress value={17} />).should.equal(true);
+        });
     });
 });
