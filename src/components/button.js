@@ -17,7 +17,9 @@ export default class Button extends React.Component {
     }
 
     handleClick(e) {
-        e.preventDefault();
+        if (e) {
+            e.preventDefault();
+        }
 
         if (this.props.disabled) {
             return;
