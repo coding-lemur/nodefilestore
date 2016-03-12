@@ -34,6 +34,14 @@ Files can upload and download without registration. Each file will expiring afte
  - setup an daily job for running the script on your OS
 
 ## changelog
+### 1.1.5
+- no new features
+- many refactoring and optimizations in backend
+- converted backend code to ES6 (will transpiled with Babel)
+- integrated ESlint
+- integrated Mocha testing framework
+- startet with testing
+
 ### 1.1.1
 - fixed missing DateFormat library (used momentjs instead)
 - updated npm and bower dependencies
