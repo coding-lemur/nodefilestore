@@ -7,6 +7,10 @@ import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import packageJson from './package.json';
+import webpack from 'webpack';
+import webpackMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackDeploymentConfig from './webpack.development.config.js';
 
 import indexRoutes from './routes/index';
 import apiRoutes from './routes/api';
@@ -20,14 +24,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 if (isDeveloping) {
-    const webpack = require('webpack');
-    const webpackMiddleware = require('webpack-dev-middleware');
-    const webpackHotMiddleware = require('webpack-hot-middleware');
-    const config = require('./webpack.development.config.js');
-
-    const compiler = webpack(config);
+    const compiler = webpack(webpackDeploymentConfig);
     const middleware = webpackMiddleware(compiler, {
-        publicPath: config.output.publicPath,
+        publicPath: webpackDeploymentConfig.output.publicPath,
         stats: {
             colors: true,
             hash: false,
