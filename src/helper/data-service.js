@@ -2,6 +2,7 @@ export default class DataService {
     uploadFiles(files, notifyCallback) {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
+            
             let fileIndex = 0;
             let currentFile = files[fileIndex];
             let loadedPreviousFiles = 0;
