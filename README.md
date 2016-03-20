@@ -5,6 +5,8 @@ This is a very lightweight filesharing service base on nodejs and mongodb/GridFS
 For the frontend we using react and ES6.
 Files can upload and download without registration. Each file will expiring after 7 days and will totally removed from the database by an nightly task.
 
+Special thanks to Christian Alfoni: This project is base on his [webpack-express-boilerplate](https://github.com/christianalfoni/webpack-express-boilerplate).
+
 ## features
 - cross-platform (nodejs)
 - modern frontend (react with ES6)
@@ -20,16 +22,16 @@ Files can upload and download without registration. Each file will expiring afte
 - copy the whole project to any folder on your server
 - goto command line and switch to the project folder
 - open config/default.json and change the connection string for your own mongodb server
-- run "npm install" to download all backend dependencies from the global nodejs repository
-- install bower with "npm install bower -g"
-- run "bower install" to download all frontend dependencies
+- run `npm install` to download all backend dependencies from the global nodejs repository
+- install bower with `npm install bower -g`
+- run `bower install` to download all frontend dependencies
 - install webpack and required plugins
-- run "npm run build" to build frontend scripts with webpack
+- run `npm run build` to build frontend scripts with webpack
 - start webapp with "node bin/www"
-- open "http://localhost:3000" in your browser
+- open `http://localhost:3000` in your browser
 - optionally:
  - install Python (>= 3.0)
- - open "/clean-up/cleanup.py" in editor
+ - open `/clean-up/cleanup.py` in editor
  - change connection string to your MongoDB instance
  - setup an daily job for running the script on your OS
 
