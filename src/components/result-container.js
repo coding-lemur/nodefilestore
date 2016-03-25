@@ -11,7 +11,7 @@ export default class ResultContainer extends React.Component {
 
         return (
             <div className="result-container">
-                <p>download-url: <a href={apiResult.downloadUrl}>{apiResult.downloadUrl}</a></p>
+                <p>download-url: <a className="download-link" href={apiResult.downloadUrl}>{apiResult.downloadUrl}</a></p>
                 <p className="download-expires">expires on {moment(apiResult.expirationDate).format('LLL')}</p>
             </div>
         );
