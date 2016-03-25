@@ -28,6 +28,6 @@ describe('result-container component', () => {
     });
 
     it('should show formated expiring date', () => {
-        component.find('.download-expires').text().should.equal('expires on April 1, 2016 10:10 PM');
+        component.find('.download-expires').text().should.equal('expires on April 1, 2016 10:10 AM');
     });
 });
