@@ -1,3 +1,9 @@
+.drop-zone {
+    &.drag-over {
+        background-color: #e0f2f1;
+    }
+}
+
 .upload-form {
     ul.file-list {
         li.file {

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Dropzone from 'react-dropzone';
 import AddFilesButton from './add-files-button';
 import EmptyFiles from './empty-files';
 import FilesList from './files-list';
@@ -57,13 +58,19 @@ export default class UploadForm extends React.Component {
         }
 
         return (
-            <div className="upload-form">
-                {filesNode}
-                {resultContainerNode}
-                {filesActionAreaNode}
-                <AddFilesButton disabled={this.state.uploading}
-                                onFilesAdded={this.handleFilesAdded.bind(this)} />
-            </div>
+            <Dropzone disableClick
+                      className="drop-zone"
+                      activeClassName="drag-over"
+                      rejectClassName="drop-rejected"
+                      onDrop={this.onDrop.bind(this)}>
+                <div className="upload-form">
+                    {filesNode}
+                    {resultContainerNode}
+                    {filesActionAreaNode}
+                    <AddFilesButton disabled={this.state.uploading}
+                                    onFilesAdded={this.handleFilesAdded.bind(this)} />
+                </div>
+            </Dropzone>
         );
     }
 
@@ -125,5 +132,11 @@ export default class UploadForm extends React.Component {
             files.splice(index, 1);
             this.setState({ files: files });
         }
+    }
+
+    onDrop(files) {
+        console.log('dropped', files);
+
+        this.handleFilesAdded(files);
     }
 }
