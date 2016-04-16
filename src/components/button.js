@@ -7,7 +7,7 @@ export default class Button extends React.Component {
     }
 
     render() {
-        const btnClasses = classnames('waves-effect', 'waves-light', 'btn', {
+        const btnClasses = classnames('waves-effect', 'waves-light', 'btn', 'light-blue', 'lighten-1', {
             'disabled': this.props.disabled
         });
 
