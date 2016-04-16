@@ -36,6 +36,12 @@ Special thanks to Christian Alfoni: This project is base on his [webpack-express
  - setup an daily job for running the script on your OS
 
 ## changelog
+### 1.2.0
+- drag & drop support
+- new startup page
+- layout changes
+- updated libraries
+
 ### 1.1.5
 - no new features
 - many refactoring and optimizations in backend
@@ -59,6 +65,6 @@ Special thanks to Christian Alfoni: This project is base on his [webpack-express
 
 ## TODO
 - [ ] write tests
-- [ ] drag & drop
+- [x] drag & drop
 - [ ] instant uploads
 - [ ] notify uploader after download
