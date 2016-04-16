@@ -63,7 +63,7 @@ export default class UploadForm extends React.Component {
                       activeClassName="drag-over"
                       rejectClassName="drop-rejected"
                       onDrop={this.onDrop.bind(this)}>
-                <div className="upload-form">
+                <div className="upload-form container">
                     {filesNode}
                     {resultContainerNode}
                     {filesActionAreaNode}

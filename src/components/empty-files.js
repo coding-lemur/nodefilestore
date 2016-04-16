@@ -39,7 +39,7 @@ export default class EmptyFiles extends React.Component {
                         <h2 className="center light-blue-text">
                             <i className="material-icons">delete</i>
                         </h2>
-                        <h5 className="center">clean</h5>
+                        <h5 className="center">tidy</h5>
                         <p className="light">
                             After 7 days your files will deleted automatically.
                         </p>

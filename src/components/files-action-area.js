@@ -10,8 +10,8 @@ export default class FilesActionArea extends React.Component {
     render() {
         return (
             <div className="action-area">
-                <Button onClick={this.props.onClearFiles} disabled={this.props.disabled}>clear</Button>
                 <Button onClick={this.props.onUploadFiles} disabled={this.props.disabled}>upload</Button>
+                <Button onClick={this.props.onClearFiles} disabled={this.props.disabled}>clear</Button>
             </div>
         );
     }

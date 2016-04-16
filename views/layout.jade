@@ -17,14 +17,7 @@ html
         block header
     body.site
         include navigation
-        .content.container
-            #root.section.no-pad
-                block content
-        footer.page-footer.grey.lighten-4
-            .container
-                | nodefilestore #{version}&nbsp;
-            .footer-copyright
-                .container
-                    | &copy; 2015 - #{new Date().getFullYear()} by&nbsp;
-                    a(href='http://www.coding-lemur.de', target='_blank') coding lemur
+        .content
+            block content
+        include footer
         block footer
