@@ -8,7 +8,9 @@ export default class EmptyFiles extends React.Component {
     render() {
         return (
             <div className="empty-container">
-                <h1 className="center orange-text">nodefilestore</h1>
+                <div className="row center">
+                    <h1 className="orange-text">nodefilestore</h1>
+                </div>
                 <div className="row center">
                     <h5 className="header col s12 light">
                         A lightweight filesharing service with nodejs and reactjs
