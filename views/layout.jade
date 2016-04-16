@@ -15,16 +15,14 @@ html
         script(type='text/javascript', src='/libs/Materialize/dist/js/materialize.min.js')
 
         block header
-    body
+    body.site
         include navigation
-        .section.no-pad-bot
-            #root.container
+        .content.container
+            #root.section.no-pad
                 block content
         footer.page-footer.grey.lighten-4
             .container
                 | nodefilestore #{version}&nbsp;
-                iframe(src='https://ghbtns.com/github-btn.html?user=MCeddy&repo=nodefilestore&type=star&count=true', frameborder='0', scrolling='0', width='80px', height='20px')
-                iframe(src='https://ghbtns.com/github-btn.html?user=MCeddy&repo=nodefilestore&type=fork&count=true', frameborder='0', scrolling='0', width='170px', height='20px')
             .footer-copyright
                 .container
                     | &copy; 2015 - #{new Date().getFullYear()} by&nbsp;
