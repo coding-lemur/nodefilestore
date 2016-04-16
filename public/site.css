@@ -1,24 +1,11 @@
-/* sticky footer */
-
-html {
-    position: relative;
-    min-height: 100%;
+.site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
-body {
-    margin: 0 0 92px;
-}
-
-body > .section {
-    height: 100%;
-}
-
-footer.page-footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 92px;
-    width: 100%;
+.content {
+    flex: 1;
 }
 
 footer.page-footer .footer-copyright {

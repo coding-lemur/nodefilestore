@@ -15,9 +15,9 @@ html
         script(type='text/javascript', src='/libs/Materialize/dist/js/materialize.min.js')
 
         block header
-    body
+    body.site
         include navigation
-        .container
+        .content.container
             #root.section.no-pad
                 block content
         footer.page-footer.grey.lighten-4
