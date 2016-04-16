@@ -13,7 +13,8 @@ Special thanks to Christian Alfoni: This project is base on his [webpack-express
 - completely ES6 (backend and frondend)
 - streaming files into mongoDB (GridFS)
 - anonymous uploading
-- auto cleanup of expired files
+- auto cleanup of expired files after 7 days
+- drag & drop
 - open source (MIT)
 
 ## setup
