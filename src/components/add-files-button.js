@@ -9,7 +9,7 @@ export default class AddFilesButton extends React.Component {
     }
 
     render() {
-        const btnClasses = classnames('btn-floating', 'btn-large', 'red', {
+        const btnClasses = classnames('btn-floating', 'btn-large', 'light-blue', 'lighten-1', {
             'disabled': this.props.disabled
         });
 
