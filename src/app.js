@@ -5,4 +5,4 @@ import ReactDOM from 'react-dom';
 
 import UploadForm from './components/upload-form';
 
-ReactDOM.render(<UploadForm/>, document.getElementById('root'));
+ReactDOM.render(<UploadForm/>, document.getElementById('content'));

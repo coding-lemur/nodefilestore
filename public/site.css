@@ -4,7 +4,7 @@
     flex-direction: column;
 }
 
-.content {
+#content {
     flex: 1;
 }
 
