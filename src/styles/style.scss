@@ -9,6 +9,10 @@
         li.file {
             position: relative;
 
+            &.collection-item {
+                background-color: transparent;
+            }
+
             .remove-button {
                 position: absolute;
                 top: 16px;
