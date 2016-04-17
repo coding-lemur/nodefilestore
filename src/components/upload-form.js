@@ -7,6 +7,7 @@ import FilesList from './files-list';
 import FilesActionArea from './files-action-area';
 import ResultContainer from './result-container';
 import DataService from '../helper/data-service';
+import FileViewModel from '../viewmodels/file.viewmodel';
 
 export default class UploadForm extends React.Component {
     static get defaultState() {
@@ -137,6 +138,8 @@ export default class UploadForm extends React.Component {
     onDrop(files) {
         console.log('dropped', files);
 
-        this.handleFilesAdded(files);
+        this.handleFilesAdded(files.map(file => {
+            return new FileViewModel(file);
+        }));
     }
 }
