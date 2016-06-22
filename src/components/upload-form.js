@@ -136,8 +136,6 @@ export default class UploadForm extends React.Component {
     }
 
     onDrop(files) {
-        console.log('dropped', files);
-
         this.handleFilesAdded(files.map(file => {
             return new FileViewModel(file);
         }));

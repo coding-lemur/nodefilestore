@@ -1,10 +1,10 @@
-.site {
+body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
 }
 
-.content {
+#content {
     flex: 1;
 }
 
