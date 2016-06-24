@@ -1,5 +1,5 @@
 # nodefilestore
-[![Dependency Status](https://david-dm.org/MCeddy/nodefilestore.svg)](https://david-dm.org/MCeddy/nodefilestore)
+[![Dependency Status](https://david-dm.org/coding-lemur/nodefilestore.svg)](https://david-dm.org/coding-lemur/nodefilestore)
 ## description
 This is a very lightweight filesharing service base on nodejs and mongodb/GridFS.
 For the frontend we using react and ES6.
