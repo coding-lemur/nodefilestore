@@ -23,7 +23,7 @@ export default class EmptyFiles extends React.Component {
                         </h2>
                         <h5 className="center">open source</h5>
                         <p className="light">
-                            We don't do any magic with your files. The whole project is open-source on <a href="https://github.com/MCeddy/nodefilestore" target="_blank">GitHub</a>.
+                            We don't do any magic with your files. The whole project is open-source on <a href="https://github.com/coding-lemur/nodefilestore" target="_blank">GitHub</a>.
                         </p>
                     </div>
                     <div className="col s12 m4">
