@@ -22,6 +22,14 @@ mongo.MongoClient.connect(config.database.connection, (err, db) => {
     database = db;
 });
 
+function extendTimeout(req, res, next) {
+    res.setTimeout(480000, () => {
+        console.log('Request has timed out.');
+        res.send(408);
+    });
+    next();
+}
+
 function insertUpload(fileIds, callback) {
     const currentDate = new Date();
     const expirationDate = moment(currentDate).add(7, 'days').toDate();
@@ -39,7 +47,7 @@ function insertUpload(fileIds, callback) {
         });
 }
 
-router.post('/upload', uploadStorage.array('files'), (req, res, next) => {
+router.post('/upload', extendTimeout, uploadStorage.array('files'), (req, res, next) => {
     const fileIds = req.files.map((file) => {
         return file.gridfsEntry._id;
     });
