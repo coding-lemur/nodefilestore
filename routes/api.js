@@ -23,9 +23,9 @@ mongo.MongoClient.connect(config.database.connection, (err, db) => {
 });
 
 function extendTimeout(req, res, next) {
-    res.setTimeout(480000, () => {
+    res.setTimeout(960000, () => {
         console.log('Request has timed out.');
-        res.send(408);
+        // res.send(408);
     });
     next();
 }
