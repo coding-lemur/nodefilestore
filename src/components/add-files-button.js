@@ -45,7 +45,7 @@ export default class AddFilesButton extends React.Component {
             fileViewModels.push(new FileViewModel(files[i]));
         }
 
-        this.props.onFilesAdded(fileViewModels);
+        this.props.addFiles(fileViewModels);
 
         // reset
         e.target.value = '';

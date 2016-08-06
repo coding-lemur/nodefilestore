@@ -6,27 +6,12 @@ import EmptyFiles from './empty-files';
 import FilesList from './files-list';
 import FilesActionArea from './files-action-area';
 import ResultContainer from './result-container';
-import DataService from '../helper/data-service';
+// import DataService from '../helper/data-service';
 import FileViewModel from '../viewmodels/file.viewmodel';
 
 export default class UploadForm extends React.Component {
-    static get defaultState() {
-        return {
-            files: [],
-            uploading: false,
-            uploadFinished: false,
-            apiResult: {
-                downloadUrl: '',
-                expirationDate: '',
-                token: ''
-            }
-        };
-    }
-
     constructor(props) {
         super(props);
-
-        this.state = UploadForm.defaultState;
     }
 
     render() {
@@ -34,7 +19,7 @@ export default class UploadForm extends React.Component {
         let resultContainerNode;
         let filesActionAreaNode;
 
-        if (this.state.files.length > 0) { // has files
+        if (false) { // has files this.state.files.length > 0
             filesNode = (
                 <FilesList files={this.state.files}
                            showDeleteButtons={!(this.state.uploading || this.state.uploadFinished)}
@@ -68,7 +53,7 @@ export default class UploadForm extends React.Component {
                     {filesNode}
                     {resultContainerNode}
                     {filesActionAreaNode}
-                    <AddFilesButton disabled={this.state.uploading}
+                    <AddFilesButton disabled={false}
                                     onFilesAdded={this.handleFilesAdded.bind(this)} />
                 </div>
             </Dropzone>
@@ -76,6 +61,7 @@ export default class UploadForm extends React.Component {
     }
 
     handleFilesAdded(files) {
+        /*
         if (this.state.uploadFinished) {
             // reset view
             const newState = UploadForm.defaultState;
@@ -86,9 +72,11 @@ export default class UploadForm extends React.Component {
             // add files to current queue
             this.setState({ files: this.state.files.concat(files) });
         }
+        */
     }
 
     handleFilesUpload() {
+        /*
         const dataService = new DataService();
         const notify = (file, fileIndex) => {
             const newFiles = this.state.files;
@@ -115,13 +103,15 @@ export default class UploadForm extends React.Component {
                 console.error(error);
                 this.setState({ uploading: false });
             });
+        */
     }
 
     handleClearFiles() {
-        this.setState({ files: [] });
+        //this.setState({ files: [] });
     }
 
     handleDeleteFile(file) {
+        /*
         if (!file) {
             return;
         }
@@ -133,6 +123,7 @@ export default class UploadForm extends React.Component {
             files.splice(index, 1);
             this.setState({ files: files });
         }
+        */
     }
 
     onDrop(files) {
