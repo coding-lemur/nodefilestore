@@ -14,6 +14,6 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(actionCreators, dispatch);
 }
 
-const App = connect(mapStateToProps, mapDispatchToProps)(UploadForm);
+const Main = connect(mapStateToProps, mapDispatchToProps)(UploadForm);
 
-export default App;
+export default Main;
