@@ -19,25 +19,24 @@ export default class UploadForm extends React.Component {
         let resultContainerNode;
         let filesActionAreaNode;
 
-        if (false) { // has files this.state.files.length > 0
+        if (this.props.files.length > 0) { // has files
             filesNode = (
-                <FilesList files={this.state.files}
-                           showDeleteButtons={!(this.state.uploading || this.state.uploadFinished)}
-                           onDeleteFile={this.handleDeleteFile.bind(this)} />
+                <FilesList {...this.props} showDeleteButtons={true} />
+                // !(this.state.uploading || this.state.uploadFinished)
             );
-
+            /*
             if (this.state.uploadFinished) {
                 resultContainerNode = (
                     <ResultContainer apiResult={this.state.apiResult} />
                 );
             }
             else { // upload not finished
-                filesActionAreaNode = (
-                    <FilesActionArea disabled={this.state.uploading}
-                                     onClearFiles={this.handleClearFiles.bind(this)}
-                                     onUploadFiles={this.handleFilesUpload.bind(this)} />
-                );
+                
             }
+            */
+            filesActionAreaNode = (
+                <FilesActionArea {...this.props} disabled={false} /> // this.state.uploading
+            );
         }
         else { // hasn't files
             filesNode = <EmptyFiles />;
@@ -53,14 +52,15 @@ export default class UploadForm extends React.Component {
                     {filesNode}
                     {resultContainerNode}
                     {filesActionAreaNode}
-                    <AddFilesButton disabled={false}
-                                    onFilesAdded={this.handleFilesAdded.bind(this)} />
+                    <AddFilesButton {...this.props} disabled={false} />
                 </div>
             </Dropzone>
         );
     }
 
     handleFilesAdded(files) {
+        this.props.addFiles(files);
+
         /*
         if (this.state.uploadFinished) {
             // reset view
@@ -107,7 +107,7 @@ export default class UploadForm extends React.Component {
     }
 
     handleClearFiles() {
-        //this.setState({ files: [] });
+        // this.setState({ files: [] });
     }
 
     handleDeleteFile(file) {
@@ -127,8 +127,6 @@ export default class UploadForm extends React.Component {
     }
 
     onDrop(files) {
-        this.handleFilesAdded(files.map(file => {
-            return new FileViewModel(file);
-        }));
+        this.handleFilesAdded(files.map(file => new FileViewModel(file)));
     }
 }

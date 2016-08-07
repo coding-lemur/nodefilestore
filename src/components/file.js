@@ -20,7 +20,7 @@ export default class File extends React.Component {
         let deleteButtonNode;
         if (this.props.showDeleteButton) {
             deleteButtonNode = (
-                <a className="remove-button" onClick={this.removeFile.bind(this)}>
+                <a className="remove-button" onClick={this.props.deleteFile.bind(null, file)}>
                     <i className="material-icons">delete</i>
                 </a>
             );
@@ -35,14 +35,9 @@ export default class File extends React.Component {
             </li>
         );
     }
-
-    removeFile() {
-        this.props.onDeleteFile(this.props.file);
-    }
 }
 
 File.propTypes = {
     file: React.PropTypes.instanceOf(FileViewModel).isRequired,
-    showDeleteButton: React.PropTypes.bool,
-    onDeleteFile: React.PropTypes.func.isRequired
+    showDeleteButton: React.PropTypes.bool
 };

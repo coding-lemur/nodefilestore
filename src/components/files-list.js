@@ -12,10 +12,7 @@ export default class FilesList extends React.Component {
         return (
             <ul className="file-list collection">
                 {this.props.files.map((file, index) => (
-                    <File file={file}
-                          showDeleteButton={this.props.showDeleteButtons}
-                          key={index}
-                          onDeleteFile={this.props.onDeleteFile} />
+                    <File {...this.props} key={index} file={file} showDeleteButton={this.props.showDeleteButtons} />
                 ))}
             </ul>
         );
@@ -24,6 +21,5 @@ export default class FilesList extends React.Component {
 
 FilesList.propTypes = {
     files: React.PropTypes.arrayOf(React.PropTypes.instanceOf(FileViewModel)).isRequired,
-    showDeleteButtons: React.PropTypes.bool,
-    onDeleteFile: React.PropTypes.func.isRequired
+    showDeleteButtons: React.PropTypes.bool
 };

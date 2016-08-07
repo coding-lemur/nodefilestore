@@ -53,6 +53,5 @@ export default class AddFilesButton extends React.Component {
 }
 
 AddFilesButton.propTypes = {
-    disabled: React.PropTypes.bool,
-    onFilesAdded: React.PropTypes.func.isRequired
+    disabled: React.PropTypes.bool
 };
