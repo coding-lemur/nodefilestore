@@ -1,5 +1,3 @@
-const isDeveloping = process.env.NODE_ENV !== 'production';
-
 import express from 'express';
 import path from 'path';
 import favicon from 'serve-favicon';
@@ -16,12 +14,9 @@ import indexRoutes from './routes/index';
 import apiRoutes from './routes/api';
 
 const app = express();
+const isDeveloping = process.env.NODE_ENV !== 'production';
 
 app.disable('x-powered-by');
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
 if (isDeveloping) {
     const compiler = webpack(webpackDeploymentConfig);

@@ -4,12 +4,14 @@ import mongo from 'mongodb';
 import Grid from 'gridfs-stream';
 import httpError from '../helper/httpError';
 import ZipStream from 'zip-stream';
+import path from 'path';
 
 const router = express.Router();
 
 let database = undefined;
 let gfs = undefined;
 
+/*
 // connect to MongoDB
 mongo.MongoClient.connect(config.database.connection, (err, db) => {
     if (err) {
@@ -20,14 +22,15 @@ mongo.MongoClient.connect(config.database.connection, (err, db) => {
 
     gfs = new Grid(database, mongo);
 });
+*/
 
 /* GET home page. */
 router.get('/', (req, res) => {
-    res.render('index', {
-        title: 'nodefilestore'
-    });
+    const rootPath =  path.resolve(__dirname, '..');
+    res.sendFile(path.join(rootPath, 'index.html'));
 });
 
+/*
 function handleMultipleFiles(files, res) {
     const archive = new ZipStream();
     archive.on('error', (error) =>{
@@ -119,5 +122,6 @@ router.get('/download/:token', (req, res, next) => {
                 });
         });
 });
+*/
 
 export default router;

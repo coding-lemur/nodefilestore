@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {Link} from 'react-router';
+
 export default class EmptyFiles extends React.Component {
     constructor(props) {
         super(props);
@@ -45,6 +47,7 @@ export default class EmptyFiles extends React.Component {
                         </p>
                     </div>
                 </div>
+                <Link to="/imprint">Imprint</Link>
             </div>
         );
     }

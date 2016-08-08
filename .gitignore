@@ -29,6 +29,6 @@ node_modules
 nodefilestore.iml
 .idea
 .vscode
-/public/app.min.js
-/public/app.min.css
+/public/nodefilestore.min.js
+/public/nodefilestore.min.css
 /public/libs

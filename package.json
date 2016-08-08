@@ -26,7 +26,6 @@
     "express": "~4.14.0",
     "gridfs-storage-engine": "^0.2.4",
     "gridfs-stream": "^1.1.1",
-    "jade": "~1.11.0",
     "moment": "^2.13.0",
     "mongodb": "^2.1.18",
     "morgan": "~1.7.0",
