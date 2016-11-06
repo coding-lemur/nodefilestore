@@ -1,11 +1,11 @@
-import express from 'express';
-import config from 'config';
-import multer from 'multer';
-import gridfsStorageEngine from 'gridfs-storage-engine';
-import mongo from 'mongodb';
-import httpError from '../helper/httpError';
-import uuid from 'node-uuid';
-import moment from 'moment';
+const express = require('express');
+const config = require('config');
+const multer = require('multer');
+const gridfsStorageEngine = require('gridfs-storage-engine');
+const mongo = require('mongodb');
+const httpError = require('../helper/httpError');
+const uuid = require('node-uuid');
+const moment = require('moment');
 
 const router = express.Router();
 const gridfsStorage = gridfsStorageEngine({ url: config.database.connection });
@@ -69,4 +69,4 @@ router.get('/download/:token', (req, res) => {
     res.redirect(301, '/download/' + req.params.token);
 });
 
-export default router;
+module.exports = router;

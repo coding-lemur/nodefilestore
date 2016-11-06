@@ -1,17 +1,17 @@
-import express from 'express';
-import path from 'path';
-import favicon from 'serve-favicon';
-import logger from 'morgan';
-import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
-import packageJson from './package.json';
-import webpack from 'webpack';
-import webpackMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
-import webpackDeploymentConfig from './webpack.development.config.js';
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const packageJson = require('./package.json');
+const webpack = require('webpack');
+const webpackMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const webpackDeploymentConfig = require('./webpack.development.config.js');
 
-import indexRoutes from './routes/index';
-import apiRoutes from './routes/api';
+const indexRoutes = require('./routes/index');
+const apiRoutes = require('./routes/api');
 
 const app = express();
 const isDeveloping = process.env.NODE_ENV !== 'production';
@@ -101,4 +101,4 @@ app.use((err, req, res) => {
     }
 });
 
-export default app;
+module.exports = app;

@@ -1,10 +1,10 @@
-import express from 'express';
-import config from 'config';
-import mongo from 'mongodb';
-import Grid from 'gridfs-stream';
-import httpError from '../helper/httpError';
-import ZipStream from 'zip-stream';
-import path from 'path';
+const express = require('express');
+const config = require('config');
+const mongo = require('mongodb');
+const Grid = require('gridfs-stream');
+const httpError = require('../helper/httpError');
+const ZipStream = require('zip-stream');
+const path = require('path');
 
 const router = express.Router();
 
@@ -124,4 +124,4 @@ router.get('/download/:token', (req, res, next) => {
 });
 */
 
-export default router;
+module.exports = router;
