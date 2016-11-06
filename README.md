@@ -37,6 +37,12 @@ Special thanks to Christian Alfoni: This project is base on his [webpack-express
  - setup an daily job for running the script on your OS
 
 ## changelog
+
+### 1.3.0 alpha
+- redux architecture
+- new backend
+- react routing (for imprint and help pages)
+
 ### 1.2.0
 - drag & drop support
 - new startup page
