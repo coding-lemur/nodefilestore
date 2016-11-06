@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 export default class MainLayout extends React.Component {
     constructor(props) {
         super(props);
@@ -15,7 +13,7 @@ export default class MainLayout extends React.Component {
                         <a className="brand-logo" id="logo-container" href="/">nodefilestore</a>
                     </div>
                 </nav>
-                <div className="content">
+                <div id="content">
                     {React.cloneElement(this.props.children, this.props)}
                 </div>
                 <footer className="page-footer grey lighten-4">
